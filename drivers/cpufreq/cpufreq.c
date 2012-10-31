@@ -658,7 +658,7 @@ static ssize_t show_scaling_governor(struct cpufreq_policy *policy, char *buf)
 static ssize_t store_scaling_governor(struct cpufreq_policy *policy,
 					const char *buf, size_t count)
 {
-	int ret = -EINVAL;
+	int ret;
 	char	str_governor[16];
 	struct cpufreq_policy new_policy;
 

@@ -1173,7 +1173,8 @@ static int cpufreq_add_dev_interface(unsigned int cpu,
 		goto err_out_kobj_put;
 
 	memcpy(&new_policy, policy, sizeof(struct cpufreq_policy));
-	/* assure that the starting sequence is run in __cpufreq_set_policy */
+	/* assure that th
+e starting sequence is run in __cpufreq_set_policy */
 	policy->governor = NULL;
 
 	/* set default policy */
@@ -2531,7 +2532,7 @@ err_out:
 }
 EXPORT_SYMBOL(cpufreq_set_gov);
 
-static int __cpuinit cpufreq_cpu_callback(struct notifier_block *nfb,
+static int cpufreq_cpu_callback(struct notifier_block *nfb,
 					unsigned long action, void *hcpu)
 {
 	unsigned int cpu = (unsigned long)hcpu;

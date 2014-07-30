@@ -1859,12 +1859,12 @@ config MSM_CPU_FREQ_SET_MIN_MAX
 	  Allow setting min and max CPU frequencies. Sysfs can be used
 	  to override these values.
 
-config MSM_CPU_FREQ_MAX
+config MSM_CPU_FREQ_MIN
 	int "Max CPU Frequency"
 	depends on MSM_CPU_FREQ_SET_MIN_MAX
 	default 1593600
 
-config MSM_CPU_FREQ_MIN
+config MSM_CPU_FREQ_MAX
 	int "Min CPU Frequency"
 	depends on MSM_CPU_FREQ_SET_MIN_MAX
 	default 192000

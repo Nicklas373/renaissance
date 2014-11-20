@@ -42,6 +42,7 @@
 #include <linux/notifier.h>
 #include <linux/rculist.h>
 #include <linux/poll.h>
+#include "printk_interface.h"
 
 #include <asm/uaccess.h>
 
@@ -1159,6 +1160,65 @@ static int have_callable_console(void)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * printk - print a kernel message
+ * @fmt: format string
+ *
+ * This is printk().  It can be called from any context.  We want it to work.
+ *
+ * We try to grab the console_lock.  If we succeed, it's easy - we log the output and
+ * call the console drivers.  If we fail to get the semaphore we place the output
+ * into the log buffer and return.  The current holder of the console_sem will
+ * notice the new output in console_unlock(); and will send it to the
+ * consoles before releasing the lock.
+ *
+ * One effect of this deferred printing is that code which calls printk() and
+ * then changes console_loglevel may break. This is because console_loglevel
+ * is inspected when the actual printing occurs.
+ *
+ * See also:
+ * printf(3)
+ *
+ * See the vsnprintf() documentation for format string extensions over C99.
+ */
+
+asmlinkage int printk(const char *fmt, ...)
+{
+	va_list args;
+	int r;
+#ifdef CONFIG_MSM_RTB
+	void *caller = __builtin_return_address(0);
+
+	uncached_logk_pc(LOGK_LOGBUF, caller, (void *)log_end);
+#endif
+
+ // if printk mode is disabled, terminate instantly
+	if (printk_mode == 0)
+		return 0;
+
+	if (is_emergency_dump())
+		return 0;
+#ifdef CONFIG_KGDB_KDB
+	if (unlikely(kdb_trap_printk)) {
+		va_start(args, fmt);
+		r = vkdb_printf(fmt, args);
+		va_end(args);
+		return r;
+	}
+#endif
+	va_start(args, fmt);
+	r = vprintk(fmt, args);
+	va_end(args);
+
+	return r;
+}
+
+/* cpu currently holding logbuf_lock */
+static volatile unsigned int printk_cpu = UINT_MAX;
+
+>>>>>>> 0f37f8c... Add sysfs to enable/disable printk logging
 /*
  * Can we actually use the console at this time on this cpu?
  *
@@ -1239,6 +1299,11 @@ asmlinkage int vprintk_emit(int facility, int level,
 	bool newline = false;
 	bool cont = false;
 	int printed_len = 0;
+
+	// if printk mode is disabled, terminate instantly
+	if (printk_mode == 0)
+		return 0;
+
 
 	boot_delay_msec();
 	printk_delay();

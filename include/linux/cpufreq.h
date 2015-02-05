@@ -353,6 +353,8 @@ int cpufreq_set_freq(unsigned int max_freq, unsigned int min_freq,
 int cpufreq_get_max(unsigned int cpu);
 int cpufreq_get_min(unsigned int cpu);
 #endif
+int cpufreq_update_freq(unsigned int cpu, unsigned int min, unsigned int max);
+int cpufreq_qos_requirement(unsigned int kHz);
 
 #ifdef CONFIG_CPU_FREQ
 /* query the current CPU frequency (in kHz). If zero, cpufreq couldn't detect it */

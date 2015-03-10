@@ -145,7 +145,6 @@ void __init msm8226_add_drivers(void)
 	fan53555_regulator_init();
 	cpr_regulator_init();
 	tsens_tm_init_driver();
-	msm_thermal_device_init();
 }
 
 void __init msm8226_init(void)

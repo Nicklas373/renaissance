@@ -1043,4 +1043,9 @@ config TOUCHSCREEN_ELAN_EKTF3135
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called synaptics_dsx_i2c.
+
+config STATE_NOTIFIER
+        bool "State Notifier"
+	default y
+
 endif

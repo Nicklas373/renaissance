@@ -60,17 +60,24 @@ static struct msm_bus_scale_pdata bus_client_pdata = {
 };
 
 static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p1[] = {
+	{ 1,  96000,  PLL0,    4, 2,   CPR_CORNER_2,    0, 2 },
+	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 3 },
+	{ 1,  259000, ACPUPLL, 4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
+	{ 1,  499000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4, 0, 6 },
 	{ 1,  787200, ACPUPLL, 5, 0,   CPR_CORNER_4, 0, 6 },
 	{ 1,  998400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
 	{ 1, 1094400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 0, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
+	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
 	{ 0 }
 };
 
 static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p2[] = {
+	{ 1,  96000,  PLL0,    4, 2,   CPR_CORNER_2,    0, 2 },
+	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 3 },
+	{ 1,  259000, ACPUPLL, 4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4, 0, 6 },
@@ -82,6 +89,9 @@ static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p2[] = {
 };
 
 static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p4[] = {
+	{ 1,  96000,  PLL0,    4, 2,   CPR_CORNER_2,    0, 2 },
+	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 3 },
+	{ 1,  259000, ACPUPLL, 4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4, 0, 6 },
@@ -96,6 +106,9 @@ static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p4[] = {
 };
 
 static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p6[] = {
+	{ 1,  96000,  PLL0,    4, 2,   CPR_CORNER_2,    0, 2 },
+	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 3 },
+	{ 1,  259000, ACPUPLL, 4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4, 0, 6 },
@@ -148,8 +161,8 @@ static struct acpuclk_drv_data drv_data = {
 		.update_mask = RCG_CONFIG_UPDATE_BIT,
 		.poll_mask = RCG_CONFIG_UPDATE_BIT,
 	},
-	.power_collapse_khz = 300000,
-	.wait_for_irq_khz = 300000,
+	.power_collapse_khz = 96000,
+	.wait_for_irq_khz = 96000,
 };
 
 static int __init acpuclk_a7_probe(struct platform_device *pdev)

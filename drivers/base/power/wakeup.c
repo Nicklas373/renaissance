@@ -29,6 +29,8 @@ static bool enable_wlan_wake_ws = true;
 module_param(enable_wlan_wake_ws, bool, 0644);
 static bool enable_bluesleep_ws = true;
 module_param(enable_bluesleep_ws, bool, 0644);
+static bool enable_bluedroid_timer_ws = true;
+module_param(enable_bluedroid_timer_ws, bool, 0644);
 
 #include "power.h"
 
@@ -444,6 +446,11 @@ static void wakeup_source_activate(struct wakeup_source *ws)
 	if (!enable_bluesleep_ws && !strcmp(ws->name, "bluesleep")) {
 		pr_debug("wakeup source %s activate skipped\n",ws->name);
 		return;
+	}
+
+ 	if (!enable_bluedroid_timer_ws && !strcmp(ws->name, "bluedroid_timer")) {
+		pr_debug("wakeup source %s activate skipped\n",ws->name);
+ 		return;
 	}
 
 	ws->active = true;

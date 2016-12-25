@@ -22,6 +22,7 @@
 #include <linux/powersuspend.h>
 #include <linux/state_notifier.h>
 #include <mach/scm.h>
+#include <linux/display_state.h>
 #include "governor.h"
 #ifdef CONFIG_ADRENO_IDLER
 #include "adreno_idler.h"
@@ -62,10 +63,12 @@ static DEFINE_SPINLOCK(tz_lock);
 #define DEVFREQ_ADRENO_TZ	"msm-adreno-tz"
 #define TAG "msm_adreno_tz: "
 
+
 static unsigned int tz_target = TARGET;
 static unsigned int tz_cap = CAP;
 
 /* Boolean to detect if pm has entered suspend mode */
+static bool display_on;
 static bool suspended = false;
 
 /* Trap into the TrustZone, and call funcs there. */
@@ -145,6 +148,15 @@ static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq,
 	 * entered pm-suspend or screen-off state.
 	 */
 	if (suspended || state_suspended) {
+		*freq = devfreq->profile->freq_table[devfreq->profile->max_state - 1];
+		return 0;
+	}
+
+	/*
+	 * Force to use & record as min freq when system has
+	 * entered pm-suspend or screen-off state.
+	 */
+	if (suspended || !display_on) {
 		*freq = devfreq->profile->freq_table[devfreq->profile->max_state - 1];
 		return 0;
 	}
@@ -363,6 +375,7 @@ static int tz_suspend(struct devfreq *devfreq)
 	struct devfreq_dev_profile *profile = devfreq->profile;
 	unsigned long freq;
 
+	display_on = is_display_on();
 	suspended = true;
 
 	__secure_tz_entry2(TZ_RESET_ID, 0, 0);
@@ -458,6 +471,8 @@ static int tz_handler(struct devfreq *devfreq, unsigned int event, void *data)
 		break;
 
 	case DEVFREQ_GOV_RESUME:
+		display_on = is_display_on();
+		suspended = false;
 		result = tz_resume(devfreq);
 		break;
 

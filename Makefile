@@ -1,7 +1,7 @@
 VERSION = 3
 PATCHLEVEL = 4
 SUBLEVEL = 0
-EXTRAVERSION = -By_Ramon_and_Thomas
+EXTRAVERSION = -Matsuura-TEST-RELEASE
 NAME = Saber-toothed Squirrel
 
 # *DOCUMENTATION*

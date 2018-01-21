@@ -1,0 +1,172 @@
+#!/bin/bash
+#
+# Copyright 2018, Dicky Herlambang "Nicklas373" <herlambangdicky5@gmail.com>
+#
+# Matsuura Kernel Builder Script // Mimori Kernel Side Development Project
+#
+# This software is licensed under the terms of the GNU General Public
+# License version 2, as published by the Free Software Foundation, and
+# may be copied, distributed, and modified under those terms.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+
+#Logic Memory
+CROSS_COMPILE_4="/home/Matsuura/arm-linux-androideabi-4.9/bin"
+CROSS_COMPILE_5="/home/Matsuura/arm-linux-androideabi-5.x/bin"
+kernel_zImage="arch/arm/boot/zImage"
+kernel_source="/home/Matsuura/renaissance"
+kernel_orig_dir="TEMP/orig_boot_img"
+kernel_build="TEMP/mktool"
+zImage="TEMP/modules/zImage"
+
+#Logic Answer Memory
+answer(){
+A="1"
+B="2"
+C="Yes"
+D="No"
+}
+
+#Kernel Builder
+build(){
+cp $kernel_orig_dir/boot.img $kernel_build/boot.img
+cd TEMP
+cd $kernel_build
+echo "Implement kernel zImage #1"
+./mktool
+cd $kernel_source
+rm $kernel_build/extracted/zImage
+mv TEMP/modules/zImage $kernel_build/extracted
+cd $kernel_build
+echo "Implement kernel zImage #2"
+./mktool
+cp new-image.img mnt/c/Users/Nickl/Downloads/boot.img
+rm boot.img
+rm new-image.img
+cd $kernel_source
+echo "Matsuura Kernel Completed to build"
+echo "Thanks to XDA - Developers"
+echo "プロジェクト　ラブライブ | Project MIMORI (2018)"
+echo "ありがとう　ございます μ's !!!"
+}
+
+#Kernel Checking
+checking(){
+echo "Checking kernel..."
+if [ -f "$zImage" ]
+then
+	echo "Kernel found"
+	echo "Continue to build kernel"
+	build
+	echo "Cleaning up"
+	cd $kernel_source
+	make clean && make mrproper
+	exit
+else
+	echo "Kernel not found"
+	echo "Cancel kernel to build"
+	echo "Please Check Log"
+	echo "Cleaning up"
+	cd $kernel_source
+	make clean && make mrproper
+	echo "Try to fix error"
+	exit
+fi
+}
+
+#Kernel Modules GCC4
+modules_gcc_4(){
+echo "##Creating Temporary Modules kernel"
+mkdir modules
+cp $kernel_zImage modules
+find . -name "*.ko" -exec cp {} modules \;
+cd modules
+$CROSS_COMPILE_4/arm-linux-androideabi-strip --strip-unneeded *.ko
+cd $kernel_source
+mv modules TEMP
+}
+
+#Kernel Modules GCC5
+modules_gcc_5(){
+echo "##Creating Temporary Modules kernel"
+mkdir modules
+cp $kernel_zImage modules
+find . -name "*.ko" -exec cp {} modules \;
+cd modules
+$CROSS_COMPILE_5/arm-linux-androideabi-strip --strip-unneeded *.ko
+cd $kernel_source
+mv modules TEMP
+}
+
+#Invalid Option
+invalid(){
+echo "Your Option Is Invalid"
+echo "Return to main menu ?"
+echo "1. Yes"
+echo "2. No"
+echo "(Yes / No)"
+read option
+answer
+if [ "$option" == "$C" ];
+	then
+		menu_compile
+fi
+if [ "$option" == "$D" ];
+	then
+		echo "See You Later"
+		exit
+fi
+}
+
+#Main Program
+menu_compile(){
+echo "
+######################################################
+#                                                    #
+#                   Matsuura Kernel                  #
+#                                                    #
+#                Nicklas Van Dam @XDA                #
+#                                                    #
+#	   Side DEVELOPMENT OF Mimori Kernel	     #
+#						     #
+######################################################"
+echo "Welcome To Matsuura Kernel Builder"
+echo "Select Which GCC To Use ?"
+echo "1. GCC 4.9.X"
+echo "2. GCC 5.4.X"
+echo "( 1 / 2)"
+read choice
+answer
+if [ "$choice" == "$A" ];
+	then
+		echo "##Running GCC Toolchains 4.9 (Hyper Toolchains)"
+		export ARCH=arm
+		export CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi-
+		echo "##Building Mimori Kernel"
+		make ARCH=arm matsuura_flamingo_defconfig
+		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi- -j4 -> mimori.log
+		modules_gcc_4
+		checking
+		menu_compile
+fi
+if [ "$choice" == "$B" ];
+	then
+		echo "##Running GCC Toolchains 5.4 (Hyper Toolchains)"
+		export ARCH=arm
+		export CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi-
+		echo "##Building Mimori Kernel"
+		make ARCH=arm matsuura_flamingo_defconfig
+		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi- -j4 -> matsuura.log
+		modules_gcc_5
+		checking
+	else
+		invalid
+fi
+}
+
+#Execute Program
+menu_compile

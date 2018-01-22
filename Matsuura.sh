@@ -34,7 +34,6 @@ D="No"
 #Kernel Builder
 build(){
 cp $kernel_orig_dir/boot.img $kernel_build/boot.img
-cd TEMP
 cd $kernel_build
 echo "Implement kernel zImage #1"
 ./mktool
@@ -44,7 +43,7 @@ mv TEMP/modules/zImage $kernel_build/extracted
 cd $kernel_build
 echo "Implement kernel zImage #2"
 ./mktool
-cp new-image.img mnt/c/Users/Nickl/Downloads/boot.img
+cp new-image.img /mnt/c/Users/Nickl/Downloads/boot.img
 rm boot.img
 rm new-image.img
 cd $kernel_source
@@ -146,9 +145,9 @@ if [ "$choice" == "$A" ];
 		echo "##Running GCC Toolchains 4.9 (Hyper Toolchains)"
 		export ARCH=arm
 		export CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi-
-		echo "##Building Mimori Kernel"
+		echo "##Building Matsuura Kernel"
 		make ARCH=arm matsuura_flamingo_defconfig
-		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi- -j4 -> mimori.log
+		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi- -j4 -> matsuura.log
 		modules_gcc_4
 		checking
 		menu_compile
@@ -158,7 +157,7 @@ if [ "$choice" == "$B" ];
 		echo "##Running GCC Toolchains 5.4 (Hyper Toolchains)"
 		export ARCH=arm
 		export CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi-
-		echo "##Building Mimori Kernel"
+		echo "##Building Matsuura Kernel"
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi- -j4 -> matsuura.log
 		modules_gcc_5

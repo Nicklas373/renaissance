@@ -235,7 +235,7 @@ void __init msm8226_add_drivers(void)
 #ifndef CONFIG_INTELLI_THERMAL
 	msm_thermal_init();
 #else
-	msm_thermal_device_init(NULL);
+	msm_thermal_device_init();
 #endif
 #ifdef CONFIG_ANDROID_RAM_CONSOLE
 	ram_console_debug_init();

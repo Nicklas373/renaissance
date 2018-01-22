@@ -20,7 +20,7 @@ CROSS_COMPILE_5="/home/Matsuura/arm-linux-androideabi-5.x/bin"
 kernel_zImage="arch/arm/boot/zImage"
 kernel_source="/home/Matsuura/renaissance"
 kernel_orig_dir="TEMP/orig_boot_img"
-kernel_build="TEMP/mktool"
+kernel_build="TEMP/AIK-Linux"
 zImage="TEMP/modules/zImage"
 
 #Logic Answer Memory
@@ -35,17 +35,15 @@ D="No"
 build(){
 cp $kernel_orig_dir/boot.img $kernel_build/boot.img
 cd $kernel_build
-echo "Implement kernel zImage #1"
-./mktool
+echo "Matsuura Kernel Building..."
+./unpackimg
+rm split_img/boot.img-zImage
 cd $kernel_source
-rm $kernel_build/extracted/zImage
-mv TEMP/modules/zImage $kernel_build/extracted
+mv TEMP/modules/zImage $kernel_build/split_img/boot.img-zImage
 cd $kernel_build
-echo "Implement kernel zImage #2"
-./mktool
-cp new-image.img /mnt/c/Users/Nickl/Downloads/boot.img
-rm boot.img
-rm new-image.img
+./repackimg
+cp image-new.img /mnt/c/Users/Nickl/Downloads/boot.img
+./cleanup
 cd $kernel_source
 echo "Matsuura Kernel Completed to build"
 echo "Thanks to XDA - Developers"
@@ -82,9 +80,9 @@ modules_gcc_4(){
 echo "##Creating Temporary Modules kernel"
 mkdir modules
 cp $kernel_zImage modules
-find . -name "*.ko" -exec cp {} modules \;
-cd modules
-$CROSS_COMPILE_4/arm-linux-androideabi-strip --strip-unneeded *.ko
+# find . -name "*.ko" -exec cp {} modules \;
+# cd modules
+# $CROSS_COMPILE_4/arm-linux-androideabi-strip --strip-unneeded *.ko
 cd $kernel_source
 mv modules TEMP
 }

@@ -1,0 +1,13 @@
+scripts/kconfig/conf --silentoldconfig Kconfig
+  CHK     include/linux/version.h
+make[1]: Nothing to be done for 'arch/arm/boot/dtbs'.
+  CHK     include/generated/utsrelease.h
+make[1]: 'include/generated/mach-types.h' is up to date.
+  CALL    scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  GZIP    kernel/config_data.gz
+  CHK     kernel/config_data.h
+  Kernel: arch/arm/boot/Image is ready
+  LD      arch/arm/boot/compressed/vmlinux
+  OBJCOPY arch/arm/boot/zImage
+  Kernel: arch/arm/boot/zImage is ready

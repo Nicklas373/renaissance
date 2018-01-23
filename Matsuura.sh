@@ -17,10 +17,11 @@
 #Logic Memory
 CROSS_COMPILE_4="/home/Matsuura/arm-linux-androideabi-4.9/bin"
 CROSS_COMPILE_5="/home/Matsuura/arm-linux-androideabi-5.x/bin"
-kernel_zImage="arch/arm/boot/zImage"
+kernel_zImage="arch/arm/boot"
 kernel_source="/home/Matsuura/renaissance"
 kernel_orig_dir="TEMP/orig_boot_img"
 kernel_build="TEMP/AIK-Linux"
+modules="TEMP/modules"
 zImage="TEMP/modules/zImage"
 
 #Logic Answer Memory
@@ -33,17 +34,17 @@ D="No"
 
 #Kernel Builder
 build(){
-cp $kernel_orig_dir/boot.img $kernel_build/boot.img
+cp TEMP/orig_boot_img/boot.img TEMP/AIK-Linux/boot.img
 cd $kernel_build
 echo "Matsuura Kernel Building..."
-./unpackimg
+./unpackimg.sh
 rm split_img/boot.img-zImage
 cd $kernel_source
-mv TEMP/modules/zImage $kernel_build/split_img/boot.img-zImage
+mv TEMP/modules/zImage TEMP/AIK-Linux/split_img/boot.img-zImage
 cd $kernel_build
-./repackimg
+./repackimg.sh
 cp image-new.img /mnt/c/Users/Nickl/Downloads/boot.img
-./cleanup
+./cleanup.sh
 cd $kernel_source
 echo "Matsuura Kernel Completed to build"
 echo "Thanks to XDA - Developers"
@@ -61,7 +62,7 @@ then
 	build
 	echo "Cleaning up"
 	cd $kernel_source
-	make clean && make mrproper
+	# make clean && make mrproper
 	exit
 else
 	echo "Kernel not found"
@@ -69,7 +70,7 @@ else
 	echo "Please Check Log"
 	echo "Cleaning up"
 	cd $kernel_source
-	make clean && make mrproper
+	# make clean && make mrproper
 	echo "Try to fix error"
 	exit
 fi
@@ -78,25 +79,23 @@ fi
 #Kernel Modules GCC4
 modules_gcc_4(){
 echo "##Creating Temporary Modules kernel"
-mkdir modules
-cp $kernel_zImage modules
+cd $kernel_source
+cp arch/arm/boot/zImage TEMP/modules/zImage
 # find . -name "*.ko" -exec cp {} modules \;
 # cd modules
 # $CROSS_COMPILE_4/arm-linux-androideabi-strip --strip-unneeded *.ko
 cd $kernel_source
-mv modules TEMP
 }
 
 #Kernel Modules GCC5
 modules_gcc_5(){
 echo "##Creating Temporary Modules kernel"
-mkdir modules
-cp $kernel_zImage modules
-find . -name "*.ko" -exec cp {} modules \;
-cd modules
-$CROSS_COMPILE_5/arm-linux-androideabi-strip --strip-unneeded *.ko
 cd $kernel_source
-mv modules TEMP
+cp arch/arm/boot/zImage TEMP/modules/zImage
+# find . -name "*.ko" -exec cp {} modules \;
+# cd modules
+# $CROSS_COMPILE_5/arm-linux-androideabi-strip --strip-unneeded *.ko
+cd $kernel_source
 }
 
 #Invalid Option

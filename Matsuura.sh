@@ -32,50 +32,6 @@ C="Yes"
 D="No"
 }
 
-#Kernel Builder
-build(){
-cp TEMP/orig_boot_img/boot.img TEMP/AIK-Linux/boot.img
-cd $kernel_build
-echo "Matsuura Kernel Building..."
-./unpackimg.sh
-rm split_img/boot.img-zImage
-cd $kernel_source
-mv TEMP/modules/zImage TEMP/AIK-Linux/split_img/boot.img-zImage
-cd $kernel_build
-./repackimg.sh
-cp image-new.img /mnt/c/Users/Nickl/Downloads/boot.img
-./cleanup.sh
-cd $kernel_source
-echo "Matsuura Kernel Completed to build"
-echo "Thanks to XDA - Developers"
-echo "プロジェクト　ラブライブ | Project MIMORI (2018)"
-echo "ありがとう　ございます μ's !!!"
-}
-
-#Kernel Checking
-checking(){
-echo "Checking kernel..."
-if [ -f "$zImage" ]
-then
-	echo "Kernel found"
-	echo "Continue to build kernel"
-	build
-	echo "Cleaning up"
-	cd $kernel_source
-	# make clean && make mrproper
-	exit
-else
-	echo "Kernel not found"
-	echo "Cancel kernel to build"
-	echo "Please Check Log"
-	echo "Cleaning up"
-	cd $kernel_source
-	# make clean && make mrproper
-	echo "Try to fix error"
-	exit
-fi
-}
-
 #Kernel Modules GCC4
 modules_gcc_4(){
 echo "##Creating Temporary Modules kernel"
@@ -146,7 +102,6 @@ if [ "$choice" == "$A" ];
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi- -j4 -> matsuura.log
 		modules_gcc_4
-		checking
 		menu_compile
 fi
 if [ "$choice" == "$B" ];
@@ -158,7 +113,6 @@ if [ "$choice" == "$B" ];
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi- -j4 -> matsuura.log
 		modules_gcc_5
-		checking
 	else
 		invalid
 fi

@@ -590,7 +590,6 @@ static struct attribute *mdss_fb_attrs[] = {
 	&dev_attr_idle_notify.attr,
 	&dev_attr_msm_fb_panel_info.attr,
 	&dev_attr_rgb.attr,
-	&dev_attr_lcm_module_id.attr,
 	NULL,
 };
 
@@ -3083,7 +3082,6 @@ int __init mdss_fb_init(void)
 }
 
 module_init(mdss_fb_init);
-<<<<<<< HEAD
 
 int mdss_fb_suspres_panel(struct device *dev, void *data)
 {

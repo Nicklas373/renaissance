@@ -43,14 +43,6 @@ config IOSCHED_ROW
 	  according to queue priority.
 	  Most suitable for mobile devices.
 
-config IOSCHED_FIOPS
-            tristate "IOPS based I/O scheduler"
-            default y
-            ---help---
-                This is an IOPS based I/O scheduler. It will try to distribute
-                IOPS equally among all processes in the system. It's mainly for
-                Flash based storage.
-
 config IOSCHED_SIOPLUS
         tristate "Simple I/O scheduler"
         default y
@@ -77,10 +69,10 @@ config IOSCHED_CFQ
 	  Note: If BLK_CGROUP=m, then CFQ can be built only as module.
 
 config IOSCHED_FIFO
- 	 bool
- 	 default y
- 	 ---help---
- 	 Fifo is similar to no-op I/O scheduler and it's a minimal scheduler that does basic merging and sorting.
+         bool
+         default y
+         ---help---
+         Fifo is similar to no-op I/O scheduler and it's a minimal scheduler that does basic merging and sorting.
 
 config CFQ_GROUP_IOSCHED
 	bool "CFQ Group Scheduling support"
@@ -186,7 +178,15 @@ choice
 
         config DEFAULT_FIFO
                 bool "fifo" if IOSCHED_FIFO=y
+	
+	config DEFAULT_SIO
+		bool "SIO" if IOSCHED_SIO=y
 
+	config DEFAULT_ZEN
+		bool "ZEN" if IOSCHED_ZEN=y
+	
+	config DEFAULT_VR
+                bool "V(R)" if IOSCHED_VR=y
 
 	config DEFAULT_SIOPLUS
 		bool "SIOPLUS" if IOSCHED_SIOPLUS=y
@@ -207,6 +207,9 @@ config DEFAULT_IOSCHED
         default "fifo" if DEFAULT_FIFO
 	default "sioplus" if DEFAULT_SIOPLUS
         default "fifo" if DEFAULT_FIFO
+	default "sio" if DEFAULT_SIO
+	default "zen" if DEFAULT_ZEN
+	default "vr" if DEFAULT_VR
 
 endmenu
 

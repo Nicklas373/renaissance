@@ -1862,7 +1862,7 @@ config MSM_CPU_FREQ_SET_MIN_MAX
 config MSM_CPU_FREQ_MAX
 	int "Max CPU Frequency"
 	depends on MSM_CPU_FREQ_SET_MIN_MAX
-	default 1401600
+	default 1593600
 
 config MSM_CPU_FREQ_MIN
 	int "Min CPU Frequency"
@@ -1889,7 +1889,7 @@ config CPU_OVERCLOCK
         bool "enable CPU overclocking of Cortex A7"
         default y
         help
-            Simple CPU Overclocking Option to 1.4 GHz
+            Simple CPU Overclocking Option to 1.6 GHz
 
 config CPU_UNDERCLOCK
 	bool "enable CPU underclocking of Cortex A7"

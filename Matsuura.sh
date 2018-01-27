@@ -19,8 +19,8 @@ CROSS_COMPILE_4="/home/Matsuura/arm-linux-androideabi-4.9/bin"
 CROSS_COMPILE_5="/home/Matsuura/arm-linux-androideabi-5.x/bin"
 kernel_zImage="arch/arm/boot"
 kernel_source="/home/Matsuura/renaissance"
-kernel_orig_dir="TEMP/orig_boot_img"
-kernel_build="TEMP/AIK-Linux"
+# kernel_orig_dir="TEMP/orig_boot_img"
+# kernel_build="TEMP/AIK-Linux"
 modules="TEMP/modules"
 zImage="TEMP/modules/zImage"
 
@@ -34,9 +34,9 @@ D="No"
 
 #Kernel Modules GCC4
 modules_gcc_4(){
-echo "##Creating Temporary Modules kernel"
-cd $kernel_source
-cp arch/arm/boot/zImage TEMP/modules/zImage
+# echo "##Creating Temporary Modules kernel"
+# cd $kernel_source
+# cp arch/arm/boot/zImage TEMP/modules/zImage
 # find . -name "*.ko" -exec cp {} modules \;
 # cd modules
 # $CROSS_COMPILE_4/arm-linux-androideabi-strip --strip-unneeded *.ko
@@ -45,9 +45,9 @@ cd $kernel_source
 
 #Kernel Modules GCC5
 modules_gcc_5(){
-echo "##Creating Temporary Modules kernel"
-cd $kernel_source
-cp arch/arm/boot/zImage TEMP/modules/zImage
+# echo "##Creating Temporary Modules kernel"
+# cd $kernel_source
+# cp arch/arm/boot/zImage TEMP/modules/zImage
 # find . -name "*.ko" -exec cp {} modules \;
 # cd modules
 # $CROSS_COMPILE_5/arm-linux-androideabi-strip --strip-unneeded *.ko
@@ -101,8 +101,7 @@ if [ "$choice" == "$A" ];
 		echo "##Building Matsuura Kernel"
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi- -j4 -> matsuura.log
-		modules_gcc_4
-		menu_compile
+		# modules_gcc_4
 fi
 if [ "$choice" == "$B" ];
 	then
@@ -112,7 +111,7 @@ if [ "$choice" == "$B" ];
 		echo "##Building Matsuura Kernel"
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi- -j4 -> matsuura.log
-		modules_gcc_5
+		# modules_gcc_5
 	else
 		invalid
 fi

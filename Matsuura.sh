@@ -15,14 +15,14 @@
 #
 
 #Logic Memory
-CROSS_COMPILE_4="/home/Matsuura/arm-linux-androideabi-4.9/bin"
-CROSS_COMPILE_5="/home/Matsuura/arm-linux-androideabi-5.x/bin"
-kernel_zImage="arch/arm/boot"
-kernel_source="/home/Matsuura/renaissance"
-# kernel_orig_dir="TEMP/orig_boot_img"
-# kernel_build="TEMP/AIK-Linux"
-modules="TEMP/modules"
-zImage="TEMP/modules/zImage"
+CROSS_COMPILE_4="$HOME/arm-linux-androideabi-4.9/bin"
+CROSS_COMPILE_5="$HOME/arm-linux-androideabi-5.x/bin"
+kernel_zImage="$HOME/Matsuura-Kernel-Flamingo/arch/arm/boot"
+kernel_source="$HOME/Matsuura-Kernel-Flamingo"
+kernel_orig_dir="$HOME/Matsuura-Kernel-Flamingo/TEMP/orig_boot_img"
+kernel_build="$HOME/Matsuura-Kernel-Flamingo/TEMP/AIK-Linux"
+modules="$HOME/Matsuura-Kernel-Flamingo/TEMP/modules"
+zImage="$HOME/Matsuura-Kernel-Flamingo/TEMP/modules/zImage"
 
 #Logic Answer Memory
 answer(){
@@ -34,24 +34,64 @@ D="No"
 
 #Kernel Modules GCC4
 modules_gcc_4(){
-# echo "##Creating Temporary Modules kernel"
-# cd $kernel_source
-# cp arch/arm/boot/zImage TEMP/modules/zImage
-# find . -name "*.ko" -exec cp {} modules \;
-# cd modules
-# $CROSS_COMPILE_4/arm-linux-androideabi-strip --strip-unneeded *.ko
+echo "##Creating Temporary Modules kernel"
 cd $kernel_source
+cp $kernel_zImage/zImage $modules
 }
 
 #Kernel Modules GCC5
 modules_gcc_5(){
-# echo "##Creating Temporary Modules kernel"
-# cd $kernel_source
-# cp arch/arm/boot/zImage TEMP/modules/zImage
-# find . -name "*.ko" -exec cp {} modules \;
-# cd modules
-# $CROSS_COMPILE_5/arm-linux-androideabi-strip --strip-unneeded *.ko
+echo "##Creating Temporary Modules kernel"
 cd $kernel_source
+cp $kernel_zImage/zImage $modules
+}
+
+#Kernel Build
+kernel_build(){
+echo "## Building kernel boot.img"
+cp $kernel_orig_dir/boot.img $kernel_build/boot.img
+cd $kernel_build
+sudo ./unpackimg.sh
+sudo rm split_img/boot.img-zImage
+sudo cp $modules/zImage split_img/boot.img-zImage
+sudo ./repackimg.sh
+sudo mv image-new.img $HOME/flamingo.img
+echo "## Cleaning up"
+sudo ./cleanup.sh
+rm boot.img
+cd $kernel_source
+echo "## Kernel completed to build"
+}
+
+#Kernel Checking
+checking(){
+echo "Checking kernel..."
+if [ -f "$zImage" ]
+then
+	echo "Kernel found"
+	echo "Continue to build kernel"
+	kernel_build
+	message=${1:-"国木田花丸 (CV.高槻かなこ)"}
+	notify-send -t 10000 -i TEMP/Additional/1.jpg "おやすみなさん！" "$message"
+	ffplay $HOME/Mimori-Kernel/TEMP/Additional/1.flac
+	echo "Cleaning up"
+	cd $kernel_source
+	make clean && make mrproper
+	exit
+else
+	echo "Kernel not found"
+	echo "Cancel kernel to build"
+	gedit mimori.log
+	cd $kernel_source
+	message=${1:-"AZALEA"}
+	notify-send -t 10000 -i TEMP/Additional/2.jpg "Tokimeki Bunruigaku" "$message"
+	ffplay $HOME/Mimori-Kernel/TEMP/Additional/2.flac
+	echo "Cleaning up"
+	cd $kernel_source
+	make clean && make mrproper
+	echo "Try to fix error"
+	exit
+fi
 }
 
 #Invalid Option
@@ -101,7 +141,8 @@ if [ "$choice" == "$A" ];
 		echo "##Building Matsuura Kernel"
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_4/arm-linux-androideabi- -j4 -> matsuura.log
-		# modules_gcc_4
+		modules_gcc_4
+		checking
 fi
 if [ "$choice" == "$B" ];
 	then
@@ -111,7 +152,8 @@ if [ "$choice" == "$B" ];
 		echo "##Building Matsuura Kernel"
 		make ARCH=arm matsuura_flamingo_defconfig
 		make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_5/arm-linux-androideabi- -j4 -> matsuura.log
-		# modules_gcc_5
+		modules_gcc_5
+		checking
 	else
 		invalid
 fi

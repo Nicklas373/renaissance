@@ -71,9 +71,9 @@ then
 	echo "Kernel found"
 	echo "Continue to build kernel"
 	kernel_build
-	message=${1:-"国木田花丸 (CV.高槻かなこ)"}
-	notify-send -t 10000 -i TEMP/Additional/1.jpg "おやすみなさん！" "$message"
-	ffplay $HOME/Mimori-Kernel/TEMP/Additional/1.flac
+	message=${1:-"Riko's Piano Sonata"}
+	notify-send -t 10000 -i TEMP/Additional/3.jpg "想いよひとつになれ (ピアノバージョン)" "$message"
+	ffplay $HOME/Mimori-Kernel/TEMP/Additional/3.flac
 	echo "Cleaning up"
 	cd $kernel_source
 	make clean && make mrproper

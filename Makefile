@@ -1,6 +1,6 @@
 VERSION = 3
 PATCHLEVEL = 4
-SUBLEVEL = 68
+SUBLEVEL = 69
 EXTRAVERSION = -Project-Matsuura
 NAME = Saber-toothed Squirrel
 

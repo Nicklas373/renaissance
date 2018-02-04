@@ -1034,6 +1034,8 @@ static void dwc3_prepare_trbs(struct dwc3_ep *dep, bool starting)
 				if (last_one)
 					break;
 			}
+			if (last_one)
+				break;
 			dbg_queue(dep->number, &req->request, 0);
 		} else {
 			struct dwc3_request	*req1;

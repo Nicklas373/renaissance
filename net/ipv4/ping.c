@@ -867,7 +867,7 @@ int ping_recvmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 	if (addr_len) {
 		if (family == AF_INET)
 			*addr_len = sizeof(*sin);
-		else if (family == AF_INET6 && addr_len)
+		else if (family == AF_INET6)
 			*addr_len = sizeof(*sin6);
 	}
 

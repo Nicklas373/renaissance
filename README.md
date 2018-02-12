@@ -31,6 +31,9 @@ This kernel feature is :
 - Added Powersuspend Driver v1.5
 - Added MSM Limiter v3.5
 - Added State Notifier Driver
-- Compiled using GCC 4.9.X Hyper Toolchains 
+- Compiled using GCC 5.4.1 Hyper Toolchains 
 
-Thanks to: @rmnhg [For kernel source], @infus38 [For some kernel patch], @vinay94185 [For Overclock]
+Thanks to: 
+- @rmnhg      [For kernel source] 
+- @infus38    [For some kernel patch] 
+- @vinay94185 [For Overclock]

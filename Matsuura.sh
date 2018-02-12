@@ -128,7 +128,7 @@ echo "
 ######################################################"
 echo "Welcome To Matsuura Kernel Builder"
 echo "Select Which GCC To Use ?"
-echo "1. GCC 4.9.X"
+echo "1. GCC 4.9.X (for old build only)"
 echo "2. GCC 5.4.X"
 echo "( 1 / 2)"
 read choice

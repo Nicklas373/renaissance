@@ -64,8 +64,6 @@ include/linux/version.h
 include/generated
 arch/*/include/generated
 arch/arm/mach-msm/smd_rpc_sym.c
-dt.sh
-TEMP
 
 # stgit generated dirs
 patches-*

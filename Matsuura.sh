@@ -31,9 +31,6 @@ A="1"
 B="2"
 C="Yes"
 D="No"
-E="A"
-F="B"
-G="C"
 }
 
 #Kernel Modules GCC4
@@ -48,36 +45,6 @@ modules_gcc_5(){
 echo "##Creating Temporary Modules kernel"
 cd $kernel_source
 cp $kernel_zImage/zImage $modules
-}
-
-#Kernel Decision
-decision(){
-echo "## Select Method To Create Kernel"
-echo "A. Old Method (boot.img)"
-echo "B. New Method (anykernel//old-ramdisk)"
-echo "C. New Method (anykernel//new-ramdisk)"
-echo "Select method .."
-echo "A / B / C"
-read method
-answer
-if [ "$method" == "$E" ];
-	then
-		kernel_build_nrrmdsk
-		kernel_completed
-		exit
-fi
-if [ "$method" == "$F" ];
-	then
-		kernel_build_rrmdsk_old
-		kernel_completed
-		exit
-fi
-if [ "$method" == "$F" ];
-	then
-		kernel_build_rrmdsk_new
-		kernel_completed
-		exit
-fi
 }
 
 #Notification Completed
@@ -103,31 +70,10 @@ echo "Try to fix error"
 exit
 }
 
-#Kernel Build Old Method
-kernel_build_nrrmdsk(){
-echo "## Building kernel boot.img"
-cp $kernel_orig_dir/boot.img $kernel_build/boot.img
-cd $kernel_build
-sudo ./unpackimg.sh
-sudo rm split_img/boot.img-zImage
-sudo cp $modules/zImage split_img/boot.img-zImage
-sudo ./repackimg.sh
-sudo mv image-new.img $HOME/flamingo.img
-echo "## Cleaning up"
-sudo ./cleanup.sh
-rm boot.img
-rm $HOME/Matsuura-Kernel-Flamingo/TEMP/modules/zImage
-cd $kernel_source
-echo "Matsuura Kernel Completed to build"
-echo "Thanks to XDA - Developers"
-echo "プロジェクト　ラブライブ | Project MIMORI (2018)"
-echo "ありがとう　ございます μ's !!!"
-}
-
 #Kernel Build New Method
-kernel_build_rrmdsk_old(){
+build(){
 echo "## Building anykernel file"
-cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel_Old.zip TEMP/Pre-built_ZIP/ZIP/Matsuura_Kernel.zip
+cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel.zip TEMP/Pre-built_ZIP/ZIP/Matsuura_Kernel.zip
 cd $kernel_zip
 unzip Matsuura_Kernel.zip
 cd $kernel_source
@@ -140,33 +86,8 @@ rm -rfv tmp
 cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/ZIP
 mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign/Matsuura_Kernel.zip
 cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign
-java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 Matsuura_Kernel.zip Matsuura_Kernel-Flamingo-OLD-signed.zip
-mv  Matsuura_Kernel-Flamingo-OLD-signed.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo-OLD-signed.zip
-rm Matsuura_Kernel.zip
-echo "Matsuura Kernel Completed to build"
-echo "Thanks to XDA - Developers"
-echo "プロジェクト　ラブライブ | Project MIMORI (2018)"
-echo "ありがとう　ございます μ's !!!"
-}
-
-#Kernel Build New Method #2
-kernel_build_rrmdsk_new(){
-echo "## Building anykernel file"
-cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel_New.zip TEMP/Pre-built_ZIP/ZIP/Matsuura_Kernel.zip
-cd $kernel_zip
-unzip Matsuura_Kernel.zip
-cd $kernel_source
-mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-zImage
-cd TEMP/Pre-built_ZIP/ZIP
-rm Matsuura_Kernel.zip
-zip -r Matsuura_Kernel *
-rm -rfv META-INF
-rm -rfv tmp
-cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/ZIP
-mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign/Matsuura_Kernel.zip
-cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign
-java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 Matsuura_Kernel.zip Matsuura_Kernel-Flamingo-NEW-signed.zip
-mv  Matsuura_Kernel-Flamingo-NEW-signed.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo-NEW-signed.zip
+java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 Matsuura_Kernel.zip Matsuura_Kernel-Flamingo-signed.zip
+mv  Matsuura_Kernel-Flamingo-signed.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo-signed.zip
 rm Matsuura_Kernel.zip
 echo "Matsuura Kernel Completed to build"
 echo "Thanks to XDA - Developers"
@@ -181,7 +102,8 @@ if [ -f "$zImage" ]
 then
 	echo "Kernel found"
 	echo "Continue to build kernel"
-	decision
+	build
+	kernel_completed
 else
 	echo "Kernel not found"
 	echo "Cancel kernel to build"

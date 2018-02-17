@@ -1,6 +1,6 @@
 # Matsuura Kernel || Private Build for Xperia E3 Kernel
 
-Matsuura Kernel is based on Lineage OS source (renaissance), and included many improvement, features and optimization on processor for Xperia E3 (D2202) that use Lineage OS (v1) as base ROM. 
+Matsuura Kernel is based on Lineage OS source (renaissance), and included many improvement, features and optimization on processor for Xperia E3 (D2202) that use Lineage OS Nougat as base ROM. 
 
 Matsuura Kernel offer kernel stability, smoothness process on cpu and This kernel is include several feature to increase performance, This kernel need kernel configuration app to control this kernel, so try to find kernel configuration app after flash this kernel.
 
@@ -31,7 +31,8 @@ This kernel feature is :
 - Added Powersuspend Driver v1.5
 - Added MSM Limiter v3.5
 - Added State Notifier Driver
-- Compiled using GCC 5.4.1 Hyper Toolchains 
+- Compiled using GCC 5.4.1 Hyper Toolchains
+- Added Compatibility with AnyKernel v1 Script
 
 Thanks to: 
 - @rmnhg      [For kernel source] 

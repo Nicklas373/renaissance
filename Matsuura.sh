@@ -107,7 +107,7 @@ then
 else
 	echo "Kernel not found"
 	echo "Cancel kernel to build"
-	gedit mimori.log
+	gedit matsuura.log
 	cd $kernel_source
 	kernel_failed
 fi

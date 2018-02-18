@@ -166,7 +166,7 @@ choice
 
         config DEFAULT_FIFO
                 bool "fifo" if IOSCHED_FIFO=y
-	
+
 	config DEFAULT_SIO
 		bool "SIO" if IOSCHED_SIO=y
 

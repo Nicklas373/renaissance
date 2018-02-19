@@ -337,7 +337,6 @@ void __init get_speed_bin(void __iomem *base, struct bin_info *bin)
 		bin->speed = (pte_efuse >> 27) & 0x7;
 
 	bin->speed_valid = !!(pte_efuse & BIT(3));
-	pr_info("get_speed_bin: pte_efuse[%X]\n", pte_efuse);
 }
 
 static struct clkctl_acpu_speed *__init select_freq_plan(void)
@@ -349,9 +348,14 @@ static struct clkctl_acpu_speed *__init select_freq_plan(void)
 
 	get_speed_bin(priv->pte_efuse_base, &bin);
 
-	bin.speed = 2;
-		pr_warn("SPEED BIN: Defaulting to %d\n",
-			 bin.speed);
+	if (bin.speed_valid) {
+		pr_info("SPEED BIN: %d\n", bin.speed);
+	} else {
+		bin.speed = 0;
+
+ 		pr_warn("SPEED BIN: Defaulting to %d\n",
+ 			 bin.speed);
+	}
 
 	return priv->pvs_tables[bin.speed];
 }

@@ -141,6 +141,12 @@ config CPU_FREQ_DEFAULT_GOV_ALUCARD
  		select CPU_FREQ_GOV_ALUCARD
  		help
 
+config CPU_FREQ_DEFAULT_GOV_LIONHEART
+	bool "lionheart"
+	select CPU_FREQ_GOV_LIONHEART
+	help
+	 Use the CPUFreq governor 'lionheart' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -246,6 +252,10 @@ config CPU_FREQ_GOV_CHILL
  	help
 	  'chill' - similar to 'conservative', but optimized for devices
 	  that go into suspended or display off states often.
+	  
+config CPU_FREQ_GOV_ALUCARD
+	tristate "'alucard' cpufreq governor"
+	depends on CPU_FREQ
 
 config CPU_FREQ_GOV_RELAXED
 	tristate "'relaxed' cpufreq governor"
@@ -255,9 +265,14 @@ config CPU_FREQ_GOV_RELAXED
 	  'relaxed' - similar to 'conservative', but optimized for devices
 	  that go into suspended or display off states often.
 
-config CPU_FREQ_GOV_ALUCARD
-	tristate "'alucard' cpufreq governor"
+config CPU_FREQ_GOV_LIONHEART
+	tristate "lionheart"
 	depends on CPU_FREQ
+	default y
+	help
+	 Use the CPUFreq governor 'lionheart' as default.
+
+	  If in doubt, say N	
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86

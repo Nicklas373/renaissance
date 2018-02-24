@@ -74,7 +74,7 @@ exit
 dtb(){
 echo "## Building new dt.img"
 cd TEMP/dtbtool
-./dtbtool -s 2048 -o arch/arm/boot/dt.img -p scripts/dtc/ arch/arm/boot/
+./dtbtool -s 2048 -o $kernel_source/arch/arm/boot/dt.img -p $kernel_source/scripts/dtc/ $kernel_source/arch/arm/boot/
 echo "## Copy new dt.img"
 cd $kernel_source
 cp arch/arm/boot/dt.img TEMP/modules/dt.img

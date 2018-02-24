@@ -70,6 +70,18 @@ echo "Try to fix error"
 exit
 }
 
+#DTB Tool Builder
+dtb(){
+echo "## Building new dt.img"
+cd TEMP/dtbtool
+./dtbtool -s 2048 -o arch/arm/boot/dt.img -p scripts/dtc/ arch/arm/boot/
+echo "## Copy new dt.img"
+cd $kernel_source
+cp arch/arm/boot/dt.img TEMP/modules/dt.img
+rm arch/arm/boot/dt.img
+echo "## dt.img created"
+}
+
 #Kernel Build New Method
 build(){
 echo "## Building anykernel file"
@@ -78,6 +90,7 @@ cd $kernel_zip
 unzip Matsuura_Kernel.zip
 cd $kernel_source
 mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-zImage
+mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-dtb
 cd TEMP/Pre-built_ZIP/ZIP
 rm Matsuura_Kernel.zip
 zip -r Matsuura_Kernel *
@@ -102,6 +115,7 @@ if [ -f "$zImage" ]
 then
 	echo "Kernel found"
 	echo "Continue to build kernel"
+	dtb
 	build
 	kernel_completed
 else

@@ -795,7 +795,7 @@ int ping_v4_sendmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 		err = PTR_ERR(rt);
 		rt = NULL;
 		if (err == -ENETUNREACH)
-			IP_INC_STATS_BH(net, IPSTATS_MIB_OUTNOROUTES);
+			IP_INC_STATS(net, IPSTATS_MIB_OUTNOROUTES);
 		goto out;
 	}
 
@@ -867,16 +867,16 @@ int ping_recvmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 	if (addr_len) {
 		if (family == AF_INET)
 			*addr_len = sizeof(*sin);
-		else if (family == AF_INET6 && addr_len)
+		else if (family == AF_INET6)
 			*addr_len = sizeof(*sin6);
 	}
 
 	if (flags & MSG_ERRQUEUE) {
 		if (family == AF_INET) {
-			return ip_recv_error(sk, msg, len);
+			return ip_recv_error(sk, msg, len, addr_len);
 #if IS_ENABLED(CONFIG_IPV6)
 		} else if (family == AF_INET6) {
-			return pingv6_ops.ipv6_recv_error(sk, msg, len);
+			return pingv6_ops.ipv6_recv_error(sk, msg, len, addr_len);
 #endif
 		}
 	}
@@ -901,11 +901,13 @@ int ping_recvmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 	/* Copy the address and add cmsg data. */
 	if (family == AF_INET) {
 		sin = (struct sockaddr_in *) msg->msg_name;
-		if (sin) {
+		if (msg->msg_name) {
+		struct sockaddr_in *sin = (struct sockaddr_in *)msg->msg_name;
 			sin->sin_family = AF_INET;
 			sin->sin_port = 0 /* skb->h.uh->source */;
 			sin->sin_addr.s_addr = ip_hdr(skb)->saddr;
 			memset(sin->sin_zero, 0, sizeof(sin->sin_zero));
+			*addr_len = sizeof(*sin);
 		}
 
 		if (isk->cmsg_flags)

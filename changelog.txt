@@ -1,0 +1,14 @@
+- Second Build (20180225):
+	- Misc Optimizations on CPU Table
+	- Fixed CPU OC and OC up to 1.6Ghz
+	- Fixed CPU UC and UC to 96Mhz with 300Mhz as minimum idle frequency
+	- Fixed GPU OC and UC to 550Mhz as higher and 100Mhz as lower frequency
+	- Re-build new dt.img (to refresh new CPU/GPU Freq)
+	- Added sioplus I/O Sched
+	- Added Lionheart CPU Governor
+	- Removed MSM Limiter & Maple I/O Sched
+	- Added SDCARDFS Drivers (Need Test)
+	- Removed F2FS Support (NOTE: Other build still support, but won't for long term support)
+	
+- First Build (20180117):
+	- INITIAL RELEASE

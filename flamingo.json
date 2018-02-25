@@ -1,0 +1,117 @@
+{
+  "name": "<b><font color=\"#FFFFFF\">Matsuura Kernel</font></b>",
+  "short_description": " Based on LineageOS <b>Project Matsuura</b>",
+  "long_description": "Welcome to <b>Matsuura Kernel</b> Stable, Optimized and Based on Lineage OS 14.1 (renaissance) kernel source.<br><a href=\"http://www.github.com/Nicklas373\">My Github Profile</a>",
+  "logo": "https://raw.githubusercontent.com/Nicklas373/renaissance/Nanaka-No-F2FS/logo.jpg",
+  "xda": "https://forum.xda-developers.com/xperia-e3/orig-development/7-0-matsuura-kernel-xperia-e3-t3751978",
+  "github": "https://github.com/Nicklas373/renaissance",
+  "google_plus": "https://plus.google.com/+DickyHerlambangNicklasCRJ",
+  "paypal": "https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=9dy1T4gF5jt-hygBQ4zLG23sqycm_l5YaDQC7lA9Lm58K5bsn-CmpAD_EY8&dispatch=5885d80a13c0db1f8e263663d3faee8d4fe1dd75ca3bd4f11d72275b28239088",
+  "features": [
+    "Linux Kernel v3.4.113",
+    "Overclock cpu up to 1,6Ghz",
+    "Underclock cpu to 96Mhz (300Mhz as minimum idle freq)",
+    "Overclock gpu up to 550Mhz",
+    "Underclock gpu to 100Mhz",
+    "CPU Boost Feature",
+    "Compatibility with all ROM based on Lineage OS [Android 7.0+]",
+    "CPU Voltage Control",
+    "Implement Power Efficient Workqueues",
+    "Frandom Support",
+    "Dynamic Fsync 1.5",
+    "Entropy Tweaks",
+    "NEON VFPV4 Optimized (hard)",
+    "Intelli Plug v4.0",
+    "Intelli Thermal v1.0",
+    "Headset High Perfomance Mode (HPF)",
+    "SDCARDFS & EXFAT File System Support",
+    "Simple GPU Algorithm",
+    "Faux Sound Control v3.4",
+    "Powersuspend Driver v1.5",
+    "State Notifier Driver",
+    "Compiled using GCC 5.4.X HyperToolchains",
+    {
+      "name": "CPU Governors",
+      "items": [
+        "interactive (default)",
+        "ondemand",
+        "userspace",
+        "powersave",
+        "performance",
+        "conservative",
+        "alucard",
+        "intellimm",
+        "intelliactive",
+        "lionheart",
+        "PegasusQ",
+	"Smartmax"
+      ]
+   },
+    {
+      "name": "I/O Schedulers",
+      "items": [
+        "noop",
+        "deadline",
+        "row",
+        "cfq (default)",
+        "bfq",
+        "sio",
+        "sioplus",
+        "fifo",
+        "fiops",
+        "tripndroid",
+        "vr",
+        "zen"
+      ]
+   },
+     {
+       "name": "TCP Congestions",
+       "items": [
+	  "Advanced",
+	  "Bic",
+	  "Cubic",
+	  "Westwood (Default)",
+	  "HTCP",
+	  "HSTCP",
+	  "HYBLA",
+	  "VEGAS",
+	  "SCALABLE",
+	  "VENO",
+	  "LP",
+	  "ILLINOIS",
+	  "YEAH"
+      ]
+    },
+      {
+	"name": "Misc Toggles",
+        "items": [
+	   "Software CRC Control",
+	   "Dynamic Fsync",
+	   "Arch Power",
+	   "Gentle Fair Sleepers",
+	   "Android Logger",
+	   "Wakelock Toggles"
+       ]
+    }
+  ],
+  "downloads": [
+    {
+      "name": "Matsuura Kernel (Second Build)",
+      "description": "<b>Only for <i>7.X.X</i> based ROM</b>",
+      "url": "https://raw.githubusercontent.com/Nicklas373/renaissance/Nanaka-No-F2FS/Build/Matsuura_Kernel-Flamingo-signed.zip",
+      "changelog": [
+	"Second Build (20180225):",
+	"Misc Optimizations on CPU Table",
+	"Fixed CPU OC and OC up to 1.6Ghz",
+	"Fixed CPU UC and UC to 96Mhz with 300Mhz as minimum idle frequency",
+	"Fixed GPU OC and UC to 550Mhz as higher and 100Mhz as lower frequency",
+	"Re-build new dt.img (to refresh new CPU/GPU Freq)",
+	"Added sioplus I/O Sched",
+	"Added Lionheart CPU Governor",
+	"Removed MSM Limiter & Maple I/O Sched",
+	"Added SDCARDFS Drivers (Need Test)",
+	"Removed F2FS Support (NOTE: Other build still support, but won't for long term support)"
+	      ] 
+    }
+  ]
+}

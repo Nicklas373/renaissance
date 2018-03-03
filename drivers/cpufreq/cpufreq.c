@@ -53,7 +53,6 @@ static DEFINE_PER_CPU(struct cpufreq_cpu_save_data, cpufreq_policy_save);
 #endif
 static DEFINE_SPINLOCK(cpufreq_driver_lock);
 
-static struct kset *cpufreq_kset;
 static struct kset *cpudev_kset;
 DEFINE_MUTEX(cpufreq_governor_lock);
 

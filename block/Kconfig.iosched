@@ -57,6 +57,12 @@ config IOSCHED_MAPLE
 	tristate "Maple I/O scheduler"
         default y
 
+config IOSCHED_TRIPNDROID
+	tristate "Tripndroid"
+	default y
+	---help---
+	  The Trip N Droid scheduler
+
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
 	# If BLK_CGROUP is a module, CFQ has to be built as module.
@@ -198,6 +204,9 @@ choice
 	config DEFAULT_MAPLE
         	bool "Maple" if IOSCHED_MAPLE=y
 
+	config DEFAULT_TRIPNDROID
+		bool "TRIPNDROID" if IOSCHED_TRIPNDROID=y
+
 endchoice
 
 config DEFAULT_IOSCHED
@@ -214,6 +223,7 @@ config DEFAULT_IOSCHED
         default "fifo" if DEFAULT_FIFO
 	default "sioplus" if DEFAULT_SIOPLUS
 	default "maple" if DEFAULT_MAPLE
+	default "tripndroid" if DEFAULT_TRIPNDROID
 
 endmenu
 

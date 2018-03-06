@@ -43,7 +43,7 @@ Build status :
 
 - First  Build        Done         20180217      [  Uploaded  ] / [XDA-VERSION]
 - Second Build        Done         20180225      [  Uploaded  ]
-- Third  Build (F2FS) Done	   20180304	 [Not Uploaded]
+- Third  Build (F2FS) Done	   20180304	 [  Uploaded  ] / [XDA-VERSION]
 - Third  Build 	      Done 	   20180307      [Not Uploaded]
 
 Thanks to: 

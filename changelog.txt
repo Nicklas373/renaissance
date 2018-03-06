@@ -1,3 +1,13 @@
+- Third Build (20180307): 
+	- Update FAUX Sound Control to v3.6
+	- Added Maple I/O Sched with state notifier
+	- Added TCP Ascarex congestions
+	- Removed stock mpdecision on kernel to fix hotplug problem
+	- Configure some CPU Governor freq & Update Alucard to v1.1 (based on semaphore kernel adapted to flamingo)
+	- Removed SDCARDFS Drivers (Not work)
+	- Added Tripndroid I/O Sched
+	- Setting up Maple as default I/O Sched and Westwood as default TCP Congestion (Need Test)
+
 - Second Build (20180225):
 	- Misc Optimizations on CPU Table
 	- Fixed CPU OC and OC up to 1.6Ghz

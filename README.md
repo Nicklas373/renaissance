@@ -14,8 +14,9 @@ This kernel feature is :
 - Added CPU underclock to 96Mhz (300Mhz as minimum idle freq)
 - Added GPU overclock and underclock to 100Mhz as lower and 550Mhz as higher frequency
 - Compatibility with AOSP,CM And LineageOS based ROM [Android 7.0+]
+- Upstreamed CPU Governor from 3.10.y -> 3.4.y
 - Added custom CPU Governor 
-: Alucard,Intelliactive,IntelliMM,PegasusQ,Smartmax,Lionheart & Intellidemand
+: Alucard,Intelliactive,IntelliMM,PegasusQ,Smartmax,Lionheart,Relaxed, Chill & Intellidemand
 - Added custom I/O Sched Governor 
 : zen,sio,sioplus,tripndroid,fifo,fiops,maple,bfq and vr
 - Added custom TCP Modules
@@ -23,10 +24,10 @@ This kernel feature is :
 - Implement Power Efficient Workqueues
 - Added Interface of Gentle Fair Sleepers,CPU Boost,Android Logger,Wakelock Toggles and Arch Power (Option Disable by Default)
 - Added Frandom Support
-- Added Dynamic Fsync 1.5
+- Added Dynamic Fsync 2.0
 - Entropy Tweaks
 - NEON VFPV4 Optimized (hard)
-- Added Intelli Plug v4.0
+- Added Intelli Plug v5.4
 - Added Intelli Thermal v1.0
 - Added Headset High Perfomance Mode (HPF)
 - Added Simple GPU Algorithm
@@ -45,6 +46,7 @@ Build status :
 - Second Build        Done         20180225      [  Uploaded  ]
 - Third  Build (F2FS) Done	   20180304	 [  Uploaded  ] / [XDA-VERSION]
 - Third  Build 	      Done 	   20180307      [Not Uploaded]
+- Third  Build Rev-1  Done	   20180310	 [  Uploaded  ]
 
 Thanks to: 
 - @rmnhg      [For kernel source] 

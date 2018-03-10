@@ -1,3 +1,12 @@
+- Third Build rev-1 (20180310):
+	- Added upstream cpu governor (thanks to @infus38)
+	- CPU misc optimization
+	- Added Chill & Relaxed CPU Governor
+	- Added dynamic management of dirty page writeback
+	- Disable some tracing and debugging
+	- Updated Dynamic fsync to v2.0
+	- Updated Intelli plug to v5.4
+
 - Third Build (20180307): 
 	- Update FAUX Sound Control to v3.6
 	- Added Maple I/O Sched with state notifier

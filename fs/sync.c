@@ -17,9 +17,21 @@
 #include <linux/backing-dev.h>
 #include "internal.h"
 
+bool fsync_enabled = true;
+
+void set_fsync(bool enable)
+	{
+	        fsync_enabled = enable;
+	}
+
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
+#ifdef CONFIG_STATE_NOTIFIER
+#include <linux/state_notifier.h>
+#endif
 #ifdef CONFIG_DYNAMIC_FSYNC
-extern bool power_suspend_active;
-extern bool dyn_fsync_active;
+#include <linux/dyn_sync_cntrl.h>
 #endif
 
 #define VALID_FLAGS (SYNC_FILE_RANGE_WAIT_BEFORE|SYNC_FILE_RANGE_WRITE| \
@@ -178,14 +190,17 @@ SYSCALL_DEFINE1(syncfs, int, fd)
  */
 int vfs_fsync_range(struct file *file, loff_t start, loff_t end, int datasync)
 {
+	if (!fsync_enabled)
+		return 0;
+		
 #ifdef CONFIG_DYNAMIC_FSYNC
-	if (likely(dyn_fsync_active && !power_suspend_active))
+	if (likely(dyn_fsync_active && suspend_active))
 		return 0;
 	else {
 #endif
-	if (!file->f_op || !file->f_op->fsync)
-		return -EINVAL;
-	return file->f_op->fsync(file, start, end, datasync);
+ 	if (!file->f_op || !file->f_op->fsync)
+ 		return -EINVAL;
+ 	return file->f_op->fsync(file, start, end, datasync);
 #ifdef CONFIG_DYNAMIC_FSYNC
 	}
 #endif
@@ -221,8 +236,12 @@ static int do_fsync(unsigned int fd, int datasync)
 
 SYSCALL_DEFINE1(fsync, unsigned int, fd)
 {
+
+	if (!fsync_enabled)
+	return 0;
+
 #ifdef CONFIG_DYNAMIC_FSYNC
-	if (likely(dyn_fsync_active && !power_suspend_active))
+	if (likely(dyn_fsync_active && suspend_active))
 		return 0;
 	else
 #endif
@@ -231,8 +250,12 @@ SYSCALL_DEFINE1(fsync, unsigned int, fd)
 
 SYSCALL_DEFINE1(fdatasync, unsigned int, fd)
 {
-#if 0
-	if (likely(dyn_fsync_active && !power_suspend_active))
+	
+	if (!fsync_enabled)
+	return 0;
+
+#if CONFIG_DYNAMIC_FSYNC
+	if (likely(dyn_fsync_active && suspend_active))
 		return 0;
 	else
 #endif
@@ -307,7 +330,7 @@ SYSCALL_DEFINE(sync_file_range)(int fd, loff_t offset, loff_t nbytes,
 				unsigned int flags)
 {
 #ifdef CONFIG_DYNAMIC_FSYNC
-	if (likely(dyn_fsync_active && !power_suspend_active))
+	if (likely(dyn_fsync_active && suspend_active))
 		return 0;
 	else {
 #endif
@@ -412,7 +435,7 @@ SYSCALL_DEFINE(sync_file_range2)(int fd, unsigned int flags,
 				 loff_t offset, loff_t nbytes)
 {
 #ifdef CONFIG_DYNAMIC_FSYNC
-	if (likely(dyn_fsync_active && !power_suspend_active))
+	if (likely(dyn_fsync_active && suspend_active))
 		return 0;
 	else
 #endif

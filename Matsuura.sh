@@ -50,8 +50,8 @@ cp $kernel_zImage/zImage $modules
 #Notification Completed
 kernel_completed(){
 message=${1:-"Riko's Piano Sonata"}
-notify-send -t 10000 -i TEMP/Additional/3.jpg "想いよひとつになれ (ピアノバージョン)" "$message"
-ffplay $HOME/Mimori-Kernel/TEMP/Additional/3.flac
+notify-send -t 10000 -i $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/3.jpg "想いよひとつになれ (ピアノバージョン)" "$message"
+ffplay $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/3.flac
 echo "Cleaning up"
 cd $kernel_source
 make clean && make mrproper
@@ -61,8 +61,8 @@ exit
 #Notification Failed
 kernel_failed(){
 message=${1:-"AZALEA"}
-notify-send -t 10000 -i TEMP/Additional/2.jpg "Tokimeki Bunruigaku" "$message"
-ffplay $HOME/Mimori-Kernel/TEMP/Additional/2.flac
+notify-send -t 10000 -i $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/2.jpg "Tokimeki Bunruigaku" "$message"
+ffplay $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/2.flac
 echo "Cleaning up"
 cd $kernel_source
 make clean && make mrproper
@@ -89,19 +89,21 @@ cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel.zip TEMP/Pre-built_ZIP/ZIP/Matsuu
 cd $kernel_zip
 unzip Matsuura_Kernel.zip
 cd $kernel_source
-mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-zImage
-mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-dtb
+mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/zImage
+mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/zImage-dtb
 cd TEMP/Pre-built_ZIP/ZIP
 rm Matsuura_Kernel.zip
 zip -r Matsuura_Kernel *
 rm -rfv META-INF
-rm -rfv tmp
-cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/ZIP
-mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign/Matsuura_Kernel.zip
-cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign
-java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 Matsuura_Kernel.zip Matsuura_Kernel-Flamingo-signed.zip
-mv  Matsuura_Kernel-Flamingo-signed.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo-signed.zip
-rm Matsuura_Kernel.zip
+rm -rfv modules
+rm -rfv patch
+rm -rfv ramdisk
+rm -rfv tools
+rm -rfv anykernel.sh
+rm -rfv README.md
+rm -rvf zImage
+rm -rvf zImage-dtb
+mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo.zip
 echo "Matsuura Kernel Completed to build"
 echo "Thanks to XDA - Developers"
 echo "プロジェクト　ラブライブ | Project MIMORI (2018)"

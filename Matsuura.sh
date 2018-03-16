@@ -103,7 +103,7 @@ rm -rfv anykernel.sh
 rm -rfv README.md
 rm -rvf zImage
 rm -rvf dtb
-mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo.zip
+mv Matsuura_Kernel-Flamingo.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo.zip
 echo "Matsuura Kernel Completed to build"
 echo "Thanks to XDA - Developers"
 echo "プロジェクト　ラブライブ | Project MIMORI (2018)"

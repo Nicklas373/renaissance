@@ -19,8 +19,8 @@ CROSS_COMPILE_4="$HOME/arm-linux-androideabi-4.9/bin"
 CROSS_COMPILE_5="$HOME/arm-linux-androideabi-5.x/bin"
 kernel_zImage="$HOME/Matsuura-Kernel-Flamingo/arch/arm/boot"
 kernel_source="$HOME/Matsuura-Kernel-Flamingo"
-kernel_orig_dir="$HOME/Matsuura-Kernel-Flamingo/TEMP/orig_boot_img"
-kernel_build="$HOME/Matsuura-Kernel-Flamingo/TEMP/AIK-Linux"
+# kernel_orig_dir="$HOME/Matsuura-Kernel-Flamingo/TEMP/orig_boot_img"
+# kernel_build="$HOME/Matsuura-Kernel-Flamingo/TEMP/AIK-Linux"
 kernel_zip="TEMP/Pre-built_ZIP/ZIP"
 modules="$HOME/Matsuura-Kernel-Flamingo/TEMP/modules"
 zImage="$HOME/Matsuura-Kernel-Flamingo/TEMP/modules/zImage"
@@ -90,10 +90,10 @@ cd $kernel_zip
 unzip Matsuura_Kernel.zip
 cd $kernel_source
 mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/zImage
-mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/zImage-dtb
+mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/dtb
 cd TEMP/Pre-built_ZIP/ZIP
 rm Matsuura_Kernel.zip
-zip -r Matsuura_Kernel *
+zip -r9 Matsuura_Kernel-Flamingo.zip * -x README Matsuura_Kernel-Flamingo.zip
 rm -rfv META-INF
 rm -rfv modules
 rm -rfv patch
@@ -102,7 +102,7 @@ rm -rfv tools
 rm -rfv anykernel.sh
 rm -rfv README.md
 rm -rvf zImage
-rm -rvf zImage-dtb
+rm -rvf dtb
 mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo.zip
 echo "Matsuura Kernel Completed to build"
 echo "Thanks to XDA - Developers"

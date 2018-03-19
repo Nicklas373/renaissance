@@ -46,7 +46,7 @@ Build status :
 - Second Build        Done         20180225      [  Uploaded  ]
 - Third  Build (F2FS) Done	   20180304	 [  Uploaded  ] / [XDA-VERSION]
 - Third  Build 	      Done 	   20180307      [Not Uploaded]
-- Third  Build Rev-1  Done	   20180319	 [  Uploaded  ]
+- 3.1    Build        Done	   20180319	 [  Uploaded  ]
 
 Thanks to: 
 - @rmnhg      [For kernel source] 

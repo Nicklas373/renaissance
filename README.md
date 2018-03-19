@@ -14,7 +14,7 @@ This kernel feature is :
 - Added CPU underclock to 96Mhz (300Mhz as minimum idle freq)
 - Added GPU overclock and underclock to 100Mhz as lower and 550Mhz as higher frequency
 - Compatibility with AOSP,CM And LineageOS based ROM [Android 7.0+]
-- Upstreamed CPU Governor from 3.10.y -> 3.4.y
+- Upstreamed CPU Governor from 3.4.y -> 3.10.y
 - Added custom CPU Governor 
 : Alucard,Intelliactive,IntelliMM,PegasusQ,Smartmax,Lionheart,Relaxed, Chill & Intellidemand
 - Added custom I/O Sched Governor 
@@ -46,7 +46,7 @@ Build status :
 - Second Build        Done         20180225      [  Uploaded  ]
 - Third  Build (F2FS) Done	   20180304	 [  Uploaded  ] / [XDA-VERSION]
 - Third  Build 	      Done 	   20180307      [Not Uploaded]
-- Third  Build Rev-1  Done	   20180310	 [  Uploaded  ]
+- Third  Build Rev-1  Done	   20180319	 [  Uploaded  ]
 
 Thanks to: 
 - @rmnhg      [For kernel source] 

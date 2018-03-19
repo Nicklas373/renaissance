@@ -1,4 +1,4 @@
-- Third Build rev-1 (20180310):
+- Third Build rev-1 (20180319):
 	- Added upstream cpu governor (thanks to @infus38)
 	- CPU misc optimization
 	- Added Chill & Relaxed CPU Governor
@@ -6,6 +6,8 @@
 	- Disable some tracing and debugging
 	- Updated Dynamic fsync to v2.0
 	- Updated Intelli plug to v5.4
+	- Misc optimization for intelli thermal
+	- Fix problem with interactive and ondemand crash (WIP)
 
 - Third Build (20180307): 
 	- Update FAUX Sound Control to v3.6

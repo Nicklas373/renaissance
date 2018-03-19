@@ -31,6 +31,8 @@ A="1"
 B="2"
 C="Yes"
 D="No"
+E="1"
+F="2"
 }
 
 #Kernel Modules GCC4
@@ -52,10 +54,6 @@ kernel_completed(){
 message=${1:-"Riko's Piano Sonata"}
 notify-send -t 10000 -i $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/3.jpg "想いよひとつになれ (ピアノバージョン)" "$message"
 ffplay $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/3.flac
-echo "Cleaning up"
-cd $kernel_source
-make clean && make mrproper
-exit
 }
 
 #Notification Failed
@@ -63,11 +61,6 @@ kernel_failed(){
 message=${1:-"AZALEA"}
 notify-send -t 10000 -i $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/2.jpg "Tokimeki Bunruigaku" "$message"
 ffplay $HOME/Matsuura-Kernel-Nicki/TEMP/Additional/2.flac
-echo "Cleaning up"
-cd $kernel_source
-make clean && make mrproper
-echo "Try to fix error"
-exit
 }
 
 #DTB Tool Builder
@@ -82,10 +75,36 @@ rm arch/arm/boot/dt.img
 echo "## dt.img created"
 }
 
-#Kernel Build New Method
-build(){
+#Kernel Build New Method For AnyKernel 1
+build_1(){
+echo "## Building anykernel 1 file"
+cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel-AK1.zip TEMP/Pre-built_ZIP/ZIP/Matsuura_Kernel.zip
+cd $kernel_zip
+unzip Matsuura_Kernel.zip
+cd $kernel_source
+mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-zImage
+mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-dtb
+cd TEMP/Pre-built_ZIP/ZIP
+rm Matsuura_Kernel.zip
+zip -r Matsuura_Kernel *
+rm -rfv META-INF
+rm -rfv tmp
+cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/ZIP
+mv Matsuura_Kernel.zip $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign/Matsuura_Kernel.zip
+cd $HOME/Matsuura-Kernel-Flamingo/TEMP/Pre-built_ZIP/Sign
+java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 Matsuura_Kernel.zip Matsuura_Kernel-Flamingo-signed.zip
+mv  Matsuura_Kernel-Flamingo-signed.zip $HOME/Matsuura-Kernel-Flamingo/Build/Matsuura_Kernel-Flamingo-signed.zip
+rm Matsuura_Kernel.zip
+echo "Matsuura Kernel Completed to build"
+echo "Thanks to XDA - Developers"
+echo "プロジェクト　ラブライブ | Project MIMORI (2018)"
+echo "ありがとう　ございます μ's !!!"
+}
+
+#Kernel Build New Method For AnyKernel 2
+build_2(){
 echo "## Building anykernel file"
-cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel.zip TEMP/Pre-built_ZIP/ZIP/Matsuura_Kernel.zip
+cp TEMP/Pre-built_ZIP/Template/Matsuura_Kernel-AK2.zip TEMP/Pre-built_ZIP/ZIP/Matsuura_Kernel.zip
 cd $kernel_zip
 unzip Matsuura_Kernel.zip
 cd $kernel_source
@@ -110,6 +129,13 @@ echo "プロジェクト　ラブライブ | Project MIMORI (2018)"
 echo "ありがとう　ございます μ's !!!"
 }
 
+#Cleaning up
+clean(){
+echo "Cleaning up"
+cd $kernel_source
+make clean && make mrproper
+}
+
 #Kernel Checking
 checking(){
 echo "Checking kernel..."
@@ -118,8 +144,25 @@ then
 	echo "Kernel found"
 	echo "Continue to build kernel"
 	dtb
-	build
 	kernel_completed
+	echo "Which version of anykernel that want to build ?"
+	echo "1. AnyKernel v1"
+	echo "2. AnyKernel v2"
+	echo "(1 / 2)"
+	read user
+	answer
+		if [ "$user" == "$E" ];
+			then
+				build_1
+				clean
+				exit
+		fi
+		if [ "$user" == "$F" ];
+			then
+				build_2
+				clean
+				exit
+		fi
 else
 	echo "Kernel not found"
 	echo "Cancel kernel to build"

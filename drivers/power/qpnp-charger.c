@@ -944,9 +944,7 @@ qpnp_chg_idcmax_set(struct qpnp_chg_chip *chip, int mA)
         	dc = mA / QPNP_CHG_I_MAXSTEP_MA;
 #else
 	dc = mA / QPNP_CHG_I_MAXSTEP_MA;
-
 #endif
-
 	pr_debug("current=%d setting 0x%x\n", mA, dc);
 	rc = qpnp_chg_write(chip, &dc,
 		chip->dc_chgpth_base + CHGR_I_MAX_REG, 1);
@@ -4209,6 +4207,7 @@ qpnp_chg_reduce_power_stage(struct qpnp_chg_chip *chip)
 	 } else
 	 	qpnp_chg_usb_iusbmax_get(chip) > USB_WALL_THRESHOLD_MA;
 #endif
+
 	if (fast_chg
 		&& usb_present
 		&& usb_ma_above_wall

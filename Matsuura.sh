@@ -149,7 +149,7 @@ then
 	echo "1. AnyKernel v1"
 	echo "2. AnyKernel v2"
 	echo "(1 / 2)"
-	read user
+	read -s user
 	answer
 		if [ "$user" == "$E" ];
 			then
@@ -179,7 +179,7 @@ echo "Return to main menu ?"
 echo "1. Yes"
 echo "2. No"
 echo "(Yes / No)"
-read option
+read -s option
 answer
 if [ "$option" == "$C" ];
 	then
@@ -209,7 +209,7 @@ echo "Select Which GCC To Use ?"
 echo "1. GCC 4.9.X (for old build only)"
 echo "2. GCC 5.4.X"
 echo "( 1 / 2)"
-read choice
+read -s choice
 answer
 if [ "$choice" == "$A" ];
 	then

@@ -1160,6 +1160,9 @@ static int have_callable_console(void)
 	return 0;
 }
 
+/* cpu currently holding logbuf_lock */
+static volatile unsigned int printk_cpu = UINT_MAX;
+
 /*
  * Can we actually use the console at this time on this cpu?
  *

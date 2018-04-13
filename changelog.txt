@@ -1,3 +1,18 @@
+- Fourth Build (20180413)
+	- Misc change with WLAN
+	- Update powersuspend to v1.6
+	- Fixed some freeze issue after upstream cpu governor
+	- Fixed upstream cpu governor
+	- Updated new power manager API
+	- Optimized kernel sched balance feature
+	- Added new filesystem dynamic read-ahead
+	- Added interface toggle of printk logger
+	- Added MSM Hotplug and disable intelli plug
+	- Misc kernel optimizations
+	- Fix some memory leak issue on selinux and other
+	- Added new wakelock toggle (bluedroid and bluesleep)
+	- Updated kernel power efficient workqueue algorithm
+	
 - v3.1  (20180319):
 	- Added upstream cpu governor (thanks to @infus38)
 	- CPU misc optimization

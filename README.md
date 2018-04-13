@@ -27,12 +27,13 @@ This kernel feature is :
 - Added Dynamic Fsync 2.0
 - Entropy Tweaks
 - NEON VFPV4 Optimized (hard)
-- Added Intelli Plug v5.4
+- Added Intelli Plug v5.4 (Disabled on new update)
 - Added Intelli Thermal v1.0
 - Added Headset High Perfomance Mode (HPF)
 - Added Simple GPU Algorithm
 - Added Faux Sound Control v3.6
-- Added Powersuspend Driver v1.5
+- Added Powersuspend Driver v1.6
+- Added MSM Hotplug
 - Added State Notifier Driver
 - Compiled using GCC 5.4.1 Hyper Toolchains
 - Added Compatibility with AnyKernel v1 Script
@@ -44,9 +45,9 @@ Build status :
 
 - First  Build        Done         20180217      [  Uploaded  ] / [XDA-VERSION]
 - Second Build        Done         20180225      [  Uploaded  ]
-- Third  Build (F2FS) Done	   20180304	 [  Uploaded  ] / [XDA-VERSION]
 - Third  Build 	      Done 	   20180307      [Not Uploaded]
 - 3.1    Build        Done	   20180319	 [  Uploaded  ]
+- Fourth Build        Done	   20180413	 [  Uploaded  ]
 
 Thanks to: 
 - @rmnhg      [For kernel source] 

@@ -106,9 +106,6 @@ static struct cpu_stats {
 
 static DEFINE_SPINLOCK(stats_lock);
 
-static uint32_t limited_max_freq = UINT_MAX;
-static uint32_t limited_min_freq;
-
 struct down_lock {
 	unsigned int locked;
 	struct delayed_work lock_rem;
@@ -143,7 +140,7 @@ static int update_average_load(unsigned int cpu)
 	if (ret)
 		return -EINVAL;
 
-	cur_idle_time = get_cpu_idle_time(cpu, &cur_wall_time);
+	cur_idle_time = get_cpu_idle_time(cpu, &cur_wall_time, io_is_busy);
 
 	wall_time = (unsigned int) (cur_wall_time - pcpu->prev_cpu_wall);
 	pcpu->prev_cpu_wall = cur_wall_time;
@@ -224,7 +221,6 @@ static void update_load_stats(void)
 			j = stats.hist_size;
 	}
 
-	st->online_cpus = num_online_cpus();
 	spin_unlock_irqrestore(&stats_lock, flags);
 
 	if (++stats.hist_cnt == stats.hist_size)

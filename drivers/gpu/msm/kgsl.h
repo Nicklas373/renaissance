@@ -81,9 +81,6 @@ static inline void KGSL_STATS_ADD(uint32_t size, atomic_t *stat,
 		atomic_set(max, ret);
 }
 
-#define KGSL_STATS_ADD(_size, _stat, _max) \
-	do { _stat += (_size); if (_stat > _max) _max = _stat; } while (0)
-
 #define KGSL_MAX_NUMIBS 100000
 
 struct kgsl_device;

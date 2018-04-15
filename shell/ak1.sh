@@ -23,6 +23,7 @@ unzip Matsuura_Kernel.zip
 cd $kernel_source
 mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-zImage
 mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-dtb
+cp TEMP/Pre-built_ZIP/Template/99matsuura TEMP/Pre-built_ZIP/ZIP/tmp/kernel/99matsuura
 cd TEMP/Pre-built_ZIP/ZIP
 rm Matsuura_Kernel.zip
 zip -r Matsuura_Kernel *

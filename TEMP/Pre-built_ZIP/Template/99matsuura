@@ -1,0 +1,118 @@
+#!system/bin/sh
+#
+# Init.d Script For Matsuura Kernel.
+# Nicklas Van Dam @ XDA
+# プロジェクト　ラブライブ | Project Matsuura (2018)
+#
+
+#Sleep Is Required To Preven Crash Which Occurs After Booting Into System.
+sleep 60
+
+#Initiate a Log File
+LOG_FILE=/mnt/sdcard/matsuura.log
+
+# Adjust CPU Modules for Governor,Frequency and other features
+# Available CPU Frequency to use 
+# 96000 192000 259000 300000 384000 499000 600000 787200 998400 1094400 1190400 1305600 1344000 1401600 1497600 1593600
+CPU_MIN="300000"
+CPU_MAX="1190400"
+CPU_GOV="chill"
+
+echo $CPU_MIN > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo $CPU_MIN > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+echo $CPU_MIN > /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+echo $CPU_MIN > /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+echo "1" > /sys/devices/system/cpu/sched_mc_power_savings
+echo "$CPU_GOV Governor is running" | tee -a $LOG_FILE;
+
+# Adjust Power Efficient Workqueue
+chmod 0644 /sys/module/workqueue/parameters/power_efficient
+echo "Y" > /sys/module/workqueue/parameters/power_efficient
+echo "Power Efficient Workqueue is running" | tee -a $LOG_FILE;
+
+# Adjust CPU Boost Module
+echo "0" > /sys/module/cpu_boost/parameters/cpu_boost
+echo "20" > /sys/module/cpu_boost/parameters/boost_ms
+echo "40" > /sys/module/cpu_boost/parameters/input_boost_ms
+echo "499200" > /sys/module/cpu_boost/parameters/sync_threshold
+echo "787200" > /sys/module/cpu_boost/parameters/input_boost_freq
+echo "CPU Boost Module is running" | tee -a $LOG_FILE;
+
+# Adjust MSM Hotplug Module
+echo "1" > /sys/module/msm_hotplug/enabled
+echo "0" > /sys/module/msm_hotplug/parameters/debug_mask
+echo "5000" > /sys/module/msm_hotplug/boost_lock_duration
+echo "2" > /sys/module/msm_hotplug/cpus_boosted
+echo "500" > /sys/module/msm_hotplug/down_lock_duration
+echo "90" > /sys/module/msm_hotplug/fast_lane_load
+echo "1" > /sys/module/msm_hotplug/min_cpus_online
+echo "4" > /sys/module/msm_hotplug/max_cpus_online
+echo "10" > /sys/module/msm_hotplug/history_size
+echo "0" > /sys/module/msm_hotplug/io_is_busy
+echo "10" > /sys/module/msm_hotplug/update_rates
+echo "0" > /sys/module/msm_hotplug/offline_load
+echo "1" > /sys/module/msm_hotplug/suspend_max_cpus
+echo "499200" > /sys/module/msm_hotplug/suspend_max_freq
+echo "MSM Hotplug is running" | tee -a $LOG_FILE;
+
+# Adjust Intelli Thermal
+echo "Y" > /sys/module/msm_thermal/parameters/enabled
+echo "1" > /sys/module/msm_thermal/core_control/enabled
+echo "70" > /sys/module/msm_thermal/parameters/limit_temp_degC
+echo "80" > /sys/module/msm_thermal/parameters/core_limit_temp_degC
+echo "500" > /sys/module/msm_thermal/parameters/poll_ms
+echo "2" > /sys/module/msm_thermal/parameters/thermal_limit_low
+echo "10" > /sys/module/msm_thermal/parameters/thermal_limit_high
+echo "Intelli thermal is running" | tee -a $LOG_FILE;
+
+# Adjust GPU Module
+GPU_GOV="msm-adreno-tz"
+echo "450000000" > /sys/class/kgsl/kgsl-3d0/devfreq/max_gpuclk
+echo "100000000" > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+echo $GPU_GOV > /sys/class/kgsl/kgsk-3d0/devfreq/governor
+echo "$GPU_GOV Governor is running" | tee -a $LOG_FILE;
+	
+# Adjust Simple GPU Algorithm Module
+echo "1" > /sys/module/simple_gpu_algorithm/parameters/simple_gpu_active
+echo "6" > /sys/module/simple_gpu_algorithm/parameters/simple_laziness
+echo "4000" > /sys/module/simple_gpu_algorithm/parameters/simple_ramp_method
+echo "Simple GPU Algorithm is running" | tee -a $LOG_FILE;
+
+# Adjust Headset High Performance Mode (HPF)
+echo "0" > /sys/devices/virtual/misc/soundcontrol/highperf_enabled
+echo "Headset High Performance Mode Disabled By Default" | tee -a $LOG_FILE;
+
+# Adjust I/O Scheduler Module
+IO_GOV="maple"
+echo $IO_GOV > /sys/block/mmcblk0/queue/scheduler
+echo $IO_GOV > /sys/block/mmcblk1/queue/scheduler
+echo "$IO_GOV Sheduler is running" | tee -a $LOG_FILE;
+
+# Adjust Misc Configurations
+echo "0" > /sys/kernel/logger_mode/logger_mode
+echo "0" > /sys/module/mmc_core/parameters/use_spi_crc
+echo "0" > /sys/module/dyn_fsync/Dyn_fsync_active
+echo "0" > /sys/kernel/sched/gentle_fair_sleepers
+echo "1" > /sys/kernel/sched/arch_power
+echo "3" > /sys/kernel/power_suspend/power_suspend_mode
+echo "0" > /sys/kernel/power_suspend/power_suspend_state 0
+echo "Misc already configured" | tee -a $LOG_FILE;
+
+# Adjust Wakelock Configurations
+echo "N" > /sys/module/wakeup/parameters/enable_smb135x_wake_ws
+echo "N" > /sys/module/wakeup/parameters/enable_si_ws
+echo "Y" > /sys/module/wakeup/parameters/enable_msm_hsic_ws
+echo "Y" > /sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws
+echo "Y" > /sys/module/wakeup/parameters/enable_wlan_rx_wake_ws
+echo "Y" > /sys/module/wakeup/parameters/enable_wlan_wake_ws
+echo "Y" > /sys/module/wakeup/parameters/enable_bluesleep_ws
+echo "Y" > /sys/module/wakeup/parameters/enable_bluedroid_ws
+echo "Wakelock already configured" | tee -a $LOG_FILE;

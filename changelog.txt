@@ -1,4 +1,4 @@
-- Fourth Build (20180413)
+- Fourth Build (20180415)
 	- Misc change with WLAN
 	- Update powersuspend to v1.6
 	- Fixed some freeze issue after upstream cpu governor
@@ -12,6 +12,7 @@
 	- Fix some memory leak issue on selinux and other
 	- Added new wakelock toggle (bluedroid and bluesleep)
 	- Updated kernel power efficient workqueue algorithm
+	- Added initial init.d support
 	
 - v3.1  (20180319):
 	- Added upstream cpu governor (thanks to @infus38)

@@ -6,7 +6,7 @@
 #
 
 #Sleep Is Required To Preven Crash Which Occurs After Booting Into System.
-sleep 60
+sleep 30
 
 #Initiate a Log File
 LOG_FILE=/mnt/sdcard/matsuura.log

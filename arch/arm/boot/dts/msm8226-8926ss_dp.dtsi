@@ -4,6 +4,34 @@
 /include/ "dsi-panel-ofilm-hx8379c-fwvga-video.dtsi"
 /include/ "dsi-panel-tcl-hx8379c-fwvga-video.dtsi"
 
+/* NMI326 DTV driver for D2243 */
+&soc {
+	spi@f9923000 {
+		qcom,gpio-mosi = <&msmgpio 0 0>;
+		qcom,gpio-miso = <&msmgpio 1 0>;
+		qcom,gpio-clk  = <&msmgpio 3 0>;
+		qcom,gpio-cs0  = <&msmgpio 2 0>;
+		nmi325@0 {
+			compatible = "nmi,nmispi"; 
+			reg = <0>; 
+			spi-max-frequency = <4800000>; 
+			interrupt-parent = <&msmgpio>;
+			interrupts = <0 109 0>;	
+		};
+	};
+
+	nmi-isdbt{        
+		compatible = "nmi,nmi325_isdbt";       
+		nmi,reset-gpio = <&msmgpio 23 0x00>;
+		nmi,irq-gpio = <&msmgpio 109 0x2008>;
+		nmi,rf_switch-gpio = <&msmgpio 66 0x00>;
+		nmi,dtv_select-gpio = <&msmgpio 49 0x00>;
+		vdd-supply = <&pm8226_l26>;
+		vdd_io-supply = <&pm8226_l28>;
+	};
+};
+/* NMI326 DTV driver for D2243 */
+
 &soc {
 	sound-9302 {
 		qcom,audio-routing =

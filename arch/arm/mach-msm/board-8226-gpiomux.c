@@ -1052,6 +1052,58 @@ static void msm_gpiomux_sdc3_install(void)
 static void msm_gpiomux_sdc3_install(void) {}
 #endif /* CONFIG_MMC_MSM_SDC3_SUPPORT */
 
+#if defined(CONFIG_ISDBT_NMI)
+static struct gpiomux_setting dtv_reset_act_cfg = {
+	.func = GPIOMUX_FUNC_GPIO,
+	.drv = GPIOMUX_DRV_6MA,
+	.pull = GPIOMUX_PULL_DOWN,
+	.dir = GPIOMUX_OUT_LOW, 
+};
+
+static struct gpiomux_setting dtv_en_act_cfg = {
+	.func = GPIOMUX_FUNC_GPIO,
+	.drv = GPIOMUX_DRV_6MA,
+	.pull = GPIOMUX_PULL_DOWN,
+	.dir = GPIOMUX_OUT_LOW,
+};
+
+static struct gpiomux_setting dtv_int_act_cfg = {
+	.func = GPIOMUX_FUNC_GPIO,
+	.drv = GPIOMUX_DRV_8MA,
+	.pull = GPIOMUX_PULL_UP,
+};
+
+static struct gpiomux_setting dtv_int_sus_cfg = {
+	.func = GPIOMUX_FUNC_GPIO,
+	.drv = GPIOMUX_DRV_2MA,
+	.pull = GPIOMUX_PULL_DOWN,
+};
+
+static struct msm_gpiomux_config msm_dtv_configs[] __initdata = {
+	{
+		.gpio = 66, /*DTV EN DP*/
+		.settings = {
+			[GPIOMUX_ACTIVE]    = &dtv_en_act_cfg,
+			[GPIOMUX_SUSPENDED] = &dtv_en_act_cfg,
+		},
+	},
+	{
+		.gpio = 23, /*DTV RESET DP*/
+		.settings = {
+			[GPIOMUX_ACTIVE]    = &dtv_reset_act_cfg,
+			[GPIOMUX_SUSPENDED] = &dtv_reset_act_cfg,
+		},
+	},
+	{
+		.gpio = 109, /*DTV IRQ DP*/
+		.settings = {
+			[GPIOMUX_ACTIVE]    = &dtv_int_act_cfg,
+			[GPIOMUX_SUSPENDED] = &dtv_int_sus_cfg,
+		},
+	},
+};
+#endif
+
 void __init msm8226_init_gpiomux(void)
 {
 	int rc;
@@ -1120,6 +1172,10 @@ void __init msm8226_init_gpiomux(void)
 					ARRAY_SIZE(usb_otg_sw_configs));
 
 	msm_gpiomux_sdc3_install();
+
+#if defined(CONFIG_ISDBT_NMI)
+	msm_gpiomux_install(msm_dtv_configs, ARRAY_SIZE(msm_dtv_configs));
+#endif
 
 	/*
 	 * HSIC STROBE gpio is also used by the ethernet. Install HSIC

@@ -637,7 +637,6 @@ int vfp_restore_user_hwstate(struct user_vfp __user *ufp,
 	return err ? -EFAULT : 0;
 }
 
-<<<<<<< HEAD
 #ifdef CONFIG_KERNEL_MODE_NEON
 
 /*

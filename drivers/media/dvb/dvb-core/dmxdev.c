@@ -2706,6 +2706,12 @@ static int dvb_dmxdev_section_event_cb(struct dmx_section_filter *filter,
 	res = dvb_dmxdev_add_event(&dmxdevfilter->events, &event);
 	DVB_RINGBUFFER_PUSH(&dmxdevfilter->buffer, dmx_data_ready->data_length);
 
+=======
+	if (ret < 0)
+		dmxdevfilter->buffer.error = ret;
+	if (dmxdevfilter->params.sec.flags & DMX_ONESHOT)
+		dmxdevfilter->state = DMXDEV_STATE_DONE;
+>>>>>>> dd5b90ddc93fedac90aa14acc1245c9e5c1cdc40
 	spin_unlock(&dmxdevfilter->dev->lock);
 	wake_up_all(&dmxdevfilter->buffer.queue);
 

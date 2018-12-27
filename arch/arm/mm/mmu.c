@@ -917,7 +917,11 @@ static void __init pmd_empty_section_gap(unsigned long addr)
 	vm = early_alloc_aligned(sizeof(*vm), __alignof__(*vm));
 	vm->addr = (void *)addr;
 	vm->size = SECTION_SIZE;
+<<<<<<< HEAD
 	vm->flags = VM_IOREMAP | VM_ARM_EMPTY_MAPPING;
+=======
+	vm->flags = VM_IOREMAP | VM_ARM_STATIC_MAPPING;
+>>>>>>> 84f0440a3c7e85d5af9112924cbffa107d650ca7
 	vm->caller = pmd_empty_section_gap;
 	vm_area_add_early(vm);
 }
@@ -930,7 +934,11 @@ static void __init fill_pmd_gaps(void)
 
 	/* we're still single threaded hence no lock needed here */
 	for (vm = vmlist; vm; vm = vm->next) {
+<<<<<<< HEAD
 		if (!(vm->flags & (VM_ARM_STATIC_MAPPING | VM_ARM_EMPTY_MAPPING)))
+=======
+		if (!(vm->flags & VM_ARM_STATIC_MAPPING))
+>>>>>>> 84f0440a3c7e85d5af9112924cbffa107d650ca7
 			continue;
 		addr = (unsigned long)vm->addr;
 		if (addr < next)

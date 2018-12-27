@@ -1647,12 +1647,21 @@ static inline void hci_conn_complete_evt(struct hci_dev *hdev, struct sk_buff *s
 		if (conn->type == ACL_LINK) {
 			conn->state = BT_CONFIG;
 			hci_conn_hold(conn);
+<<<<<<< HEAD
 			conn->disc_timeout = HCI_DISCONN_TIMEOUT;
 			mgmt_connected(hdev->id, &ev->bdaddr, 0);
 		} else if (conn->type == LE_LINK) {
 			conn->state = BT_CONNECTED;
 			conn->disc_timeout = HCI_DISCONN_TIMEOUT;
 			mgmt_connected(hdev->id, &ev->bdaddr, 1);
+=======
+
+			if (!conn->out && !hci_conn_ssp_enabled(conn) &&
+			    !hci_find_link_key(hdev, &ev->bdaddr))
+				conn->disc_timeout = HCI_PAIRING_TIMEOUT;
+			else
+				conn->disc_timeout = HCI_DISCONN_TIMEOUT;
+>>>>>>> 8da04d3a3b2358e1007333aea175eb3797682f43
 		} else
 			conn->state = BT_CONNECTED;
 

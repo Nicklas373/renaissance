@@ -1213,6 +1213,8 @@ static int snd_pcm_dev_disconnect(struct snd_device *device)
 	if (list_empty(&pcm->list))
 		goto unlock;
 
+	mutex_lock(&pcm->open_mutex);
+	wake_up(&pcm->open_wait);
 	list_del_init(&pcm->list);
 	for (cidx = 0; cidx < 2; cidx++)
 		for (substream = pcm->streams[cidx].substream; substream; substream = substream->next)
@@ -1244,6 +1246,7 @@ static int snd_pcm_dev_disconnect(struct snd_device *device)
 			pcm->streams[cidx].vol_kctl = NULL;
 		}
 	}
+	mutex_unlock(&pcm->open_mutex);
  unlock:
 	mutex_unlock(&register_mutex);
 	return 0;

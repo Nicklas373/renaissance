@@ -758,7 +758,6 @@ static int crypt_convert(struct crypt_config *cc,
 			wait_for_completion(&ctx->restart);
 			INIT_COMPLETION(ctx->restart);
 			ctx->req = NULL;
-			this_cc->req = NULL;
 			ctx->sector++;
 			continue;
 

@@ -407,7 +407,8 @@ pipe_read(struct kiocb *iocb, const struct iovec *_iov,
 			offset = buf->offset;
 redo:
 			addr = ops->map(pipe, buf, atomic);
-			error = pipe_iov_copy_to_user(iov, addr, &offset, &remaining);
+			error = pipe_iov_copy_to_user(iov, addr, &offset, 
+							&remaining, atomic);
 			ops->unmap(pipe, buf, addr);
 			if (unlikely(error)) {
 				/*

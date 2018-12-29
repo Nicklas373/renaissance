@@ -11,67 +11,20 @@
  *
  */
 
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/module.h>
+#include <linux/mutex.h>
+#include <linux/msm_tsens.h>
+#include <linux/workqueue.h>
+#include <linux/cpu.h>
+#include <linux/cpufreq.h>
+#include <linux/msm_tsens.h>
+#include <linux/msm_thermal.h>
+#include <linux/platform_device.h>
+#include <linux/of.h>
 
-#include <linux/sched.h>
-
-#define MAX_CURRENT_UA 1000000
-#define MAX_RAILS 5
-#define MAX_THRESHOLD 2
-#define MONITOR_ALL_TSENS -1
-#define BYTES_PER_FUSE_ROW  8
-#define MAX_EFUSE_VALUE  16
-#define THERM_SECURE_BITE_CMD 8
-
-static struct msm_thermal_data msm_thermal_info;
-static struct delayed_work check_temp_work;
-static bool core_control_enabled;
-static uint32_t cpus_offlined;
-static DEFINE_MUTEX(core_control_mutex);
-static struct kobject *cc_kobj;
-static struct task_struct *hotplug_task;
-static struct task_struct *freq_mitigation_task;
-static struct task_struct *thermal_monitor_task;
-static struct completion hotplug_notify_complete;
-static struct completion freq_mitigation_complete;
-static struct completion thermal_monitor_complete;
-
-static int enabled;
-static int polling_enabled;
-static int rails_cnt;
-static int psm_rails_cnt;
-static int ocr_rail_cnt;
-static int limit_idx;
-static int limit_idx_low;
-static int limit_idx_high;
-static int max_tsens_num;
-static struct cpufreq_frequency_table *table;
-static uint32_t usefreq;
-static int freq_table_get;
-static bool vdd_rstr_enabled;
-static bool vdd_rstr_nodes_called;
-static bool vdd_rstr_probed;
-static bool psm_enabled;
-static bool psm_nodes_called;
-static bool psm_probed;
-static bool hotplug_enabled;
-static bool freq_mitigation_enabled;
-static bool ocr_enabled;
-static bool ocr_nodes_called;
-static bool ocr_probed;
-static bool interrupt_mode_enable;
-static bool msm_thermal_probed;
-static bool therm_reset_enabled;
-static int *tsens_id_map;
-static DEFINE_MUTEX(vdd_rstr_mutex);
-static DEFINE_MUTEX(psm_mutex);
-static DEFINE_MUTEX(ocr_mutex);
-static uint32_t min_freq_limit;
-static uint32_t default_cpu_temp_limit;
-static bool default_temp_limit_enabled;
-static bool default_temp_limit_probed;
-static bool default_temp_limit_nodes_called;
-
-unsigned int temp_threshold = 70;
+unsigned int temp_threshold = 60;
 module_param(temp_threshold, int, 0755);
 
 static struct thermal_info {

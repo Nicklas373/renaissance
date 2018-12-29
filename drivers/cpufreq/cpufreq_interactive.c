@@ -1322,7 +1322,6 @@ static int cpufreq_governor_interactive(struct cpufreq_policy *policy,
 			 */
 			del_timer_sync(&pcpu->cpu_timer);
 			del_timer_sync(&pcpu->cpu_slack_timer);
-			cpufreq_interactive_timer_start(j);
 
 			if (pcpu->nr_timer_resched) {
 				if (pcpu->policy->min >= pcpu->target_freq)

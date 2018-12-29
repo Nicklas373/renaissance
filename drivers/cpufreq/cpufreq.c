@@ -509,15 +509,13 @@ static bool cpufreq_update_allowed(int mpd)
 static ssize_t store_##file_name					\
 (struct cpufreq_policy *policy, const char *buf, size_t count)		\
 {									\
-	int ret = -EINVAL;						\
-	struct cpufreq_policy 					        \
-	new_policy;							\
-	struct cpufreq_policy new_policy;                               \
-        int mpd = strcmp(current->comm, "mpdecision");		        \
-         								\
-	if (mpd == 0)							\
-	if (!cpufreq_update_allowed(mpd);				\
-	    return ret;							\
+	unsigned int ret;						\
+	struct cpufreq_policy new_policy;				\
+	int mpd = strcmp(current->comm, "mpdecision");			\
+									\
+	if (!cpufreq_update_allowed(mpd))				\
+                return ret;                                             \
+									\
 	ret = cpufreq_get_policy(&new_policy, policy->cpu);		\
 	if (ret)							\
 		return -EINVAL;						\

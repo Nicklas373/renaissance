@@ -369,6 +369,7 @@ static void cpuboost_input_event(struct input_handle *handle,
 
 	if (suspended || !input_boost_enabled ||
 		work_pending(&input_boost_work))
+		return;
 
 	if (!cpu_boost)
 		return;

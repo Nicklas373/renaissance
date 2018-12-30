@@ -804,7 +804,6 @@ bool pm_get_wakeup_count(unsigned int *count, bool block)
 bool pm_save_wakeup_count(unsigned int count)
 {
 	unsigned int cnt, inpr;
-	unsigned long flags;
 	struct wakeup_source *ws;
 
 	events_check_enabled = false;

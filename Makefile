@@ -371,7 +371,7 @@ KBUILD_CFLAGS   := -Wall -DNDEBUG -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-                   -Wno-unused-variable \
+                   -Wno-unused-variable -Wno-maybe-uninitialized\
 		   -fno-delete-null-pointer-checks \
 		   -mcpu=cortex-a15 -mtune=cortex-a7 -mfpu=neon-vfpv4 -marm \
 		   -ffast-math -fsingle-precision-constant \

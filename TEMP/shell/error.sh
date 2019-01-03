@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2018, Dicky Herlambang "Nicklas373" <herlambangdicky5@gmail.com>
+# Copyright 2018 - 2019, Dicky Herlambang "Nicklas373" <herlambangdicky5@gmail.com>
 #
 # Yume Kernel Builder Script
 #

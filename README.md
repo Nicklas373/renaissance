@@ -53,4 +53,4 @@ Thanks to:
 - @infus38 [For some kernel patch]
 - @vinay94185 [For Overclock]
 
-# Codename: Minori || Project Yume (2018)
+# Codename: Minori || Project Yume (2018 - 2019)

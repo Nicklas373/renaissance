@@ -45,7 +45,7 @@ modules.builtin
 /Module.markers
 /Module.symvers
 arch/arm/mach-msm/smd_rpc_sym.c
-kernel.log
+minori.log
 
 #
 # Debian directory (make deb-pkg)

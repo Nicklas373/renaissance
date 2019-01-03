@@ -465,7 +465,7 @@ config TCP_CONG_CUBIC
 
 config TCP_CONG_WESTWOOD
 	tristate "TCP Westwood+"
-	default m
+	default y
 	---help---
 	TCP Westwood+ is a sender-side only modification of the TCP Reno
 	protocol stack that optimizes the performance of TCP congestion
@@ -477,9 +477,21 @@ config TCP_CONG_WESTWOOD
 	TCP Westwood+ significantly increases fairness wrt TCP Reno in
 	wired networks and throughput over wireless links.
 
+config TCP_CONG_ASCAREX
+	tristate "TCP Ascarex"
+	default y
+	---help---
+	TCP Ascarex is a sender-side only modification of the TCP Westwood+
+	protocol stack that optimizes the performance of TCP congestion
+	control. It is based on end-to-end bandwidth estimation to set
+	congestion window and slow start threshold after a congestion
+	episode. A modification to TCP's congestion control mechanism for use
+	with large congestion windows. A table indicates how much to
+	increase the congestion window by when an ACK is received.
+
 config TCP_CONG_HTCP
         tristate "H-TCP"
-        default m
+        default y
 	---help---
 	H-TCP is a send-side only modifications of the TCP Reno
 	protocol stack that optimizes the performance of TCP
@@ -491,7 +503,7 @@ config TCP_CONG_HTCP
 config TCP_CONG_HSTCP
 	tristate "High Speed TCP"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	Sally Floyd's High Speed TCP (RFC 3649) congestion control.
 	A modification to TCP's congestion control mechanism for use
@@ -502,7 +514,7 @@ config TCP_CONG_HSTCP
 config TCP_CONG_HYBLA
 	tristate "TCP-Hybla congestion control algorithm"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	TCP-Hybla is a sender-side only change that eliminates penalization of
 	long-RTT, large-bandwidth connections, like when satellite legs are
@@ -512,7 +524,7 @@ config TCP_CONG_HYBLA
 config TCP_CONG_VEGAS
 	tristate "TCP Vegas"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	TCP Vegas is a sender-side only change to TCP that anticipates
 	the onset of congestion by estimating the bandwidth. TCP Vegas
@@ -523,7 +535,7 @@ config TCP_CONG_VEGAS
 config TCP_CONG_SCALABLE
 	tristate "Scalable TCP"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	Scalable TCP is a sender-side only change to TCP which uses a
 	MIMD congestion control algorithm which has some nice scaling
@@ -533,7 +545,7 @@ config TCP_CONG_SCALABLE
 config TCP_CONG_LP
 	tristate "TCP Low Priority"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	TCP Low Priority (TCP-LP), a distributed algorithm whose goal is
 	to utilize only the excess network bandwidth as compared to the
@@ -543,7 +555,7 @@ config TCP_CONG_LP
 config TCP_CONG_VENO
 	tristate "TCP Veno"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	TCP Veno is a sender-side only enhancement of TCP to obtain better
 	throughput over wireless networks. TCP Veno makes use of state
@@ -556,7 +568,7 @@ config TCP_CONG_YEAH
 	tristate "YeAH TCP"
 	depends on EXPERIMENTAL
 	select TCP_CONG_VEGAS
-	default n
+	default y
 	---help---
 	YeAH-TCP is a sender-side high-speed enabled TCP congestion control
 	algorithm, which uses a mixed loss/delay approach to compute the
@@ -570,7 +582,7 @@ config TCP_CONG_YEAH
 config TCP_CONG_ILLINOIS
 	tristate "TCP Illinois"
 	depends on EXPERIMENTAL
-	default n
+	default y
 	---help---
 	TCP-Illinois is a sender-side modification of TCP Reno for
 	high speed long delay links. It uses round-trip-time to
@@ -582,10 +594,13 @@ config TCP_CONG_ILLINOIS
 
 choice
 	prompt "Default TCP congestion control"
-	default DEFAULT_CUBIC
+	default DEFAULT_WESTWOOD
 	help
 	  Select the TCP congestion control that will be used by default
 	  for all connections.
+
+	config DEFAULT_ASCAREX
+		bool "Ascarex" if TCP_CONG_ASCAREX=y
 
 	config DEFAULT_BIC
 		bool "Bic" if TCP_CONG_BIC=y
@@ -611,6 +626,9 @@ choice
 	config DEFAULT_RENO
 		bool "Reno"
 
+	config DEFAULT_WESTWOOD
+		bool "Westwood"
+
 endchoice
 
 endif
@@ -622,6 +640,7 @@ config TCP_CONG_CUBIC
 
 config DEFAULT_TCP_CONG
 	string
+	default "ascarex" if DEFAULT_ASCAREX
 	default "bic" if DEFAULT_BIC
 	default "cubic" if DEFAULT_CUBIC
 	default "htcp" if DEFAULT_HTCP
@@ -630,7 +649,7 @@ config DEFAULT_TCP_CONG
 	default "westwood" if DEFAULT_WESTWOOD
 	default "veno" if DEFAULT_VENO
 	default "reno" if DEFAULT_RENO
-	default "cubic"
+	default "westwood"
 
 config TCP_MD5SIG
 	bool "TCP: MD5 Signature Option support (RFC2385) (EXPERIMENTAL)"

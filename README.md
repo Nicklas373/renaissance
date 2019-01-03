@@ -36,6 +36,8 @@ This kernel feature is :
 - Compiled using GCC Hyper Toolchains 4.9.4
 - Added Compatibility with AnyKernel v1 Script
 - Added EXFAT File System Support (Ported from https://github.com/dorimanx/exfat-nofuse)
+- Added F2FS File System Support (Ported from https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-stable.git/)
+- Added Dynamic Management Page of Dirty Writeback
 - Added Makefile Optimization (O3 Optimizations)
 - And other more, see github commit for other optimizations
 
@@ -44,6 +46,7 @@ This kernel feature is :
 Build status :
 
 - First Build Done 20190101 [ Uploaded ]
+- Second Build DOne 20190102 [ Uploaded ]
 
 Thanks to:
 - @rmnhg [For kernel source]

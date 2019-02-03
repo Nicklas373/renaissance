@@ -3,3 +3,9 @@ Yume Kernel || Codename: Kaori (2018-2019)
 Changelog:
 	  v1.0 (20190203)
 		: - INITIAL BUILD
+          v1.1 (20190204)
+		: - Optimize some I/O Scheduler
+		  - Enabling pipe flag on compiling
+		  - Increase entropy levels (R/W)
+		  - Misc fixes with zram, gpu
+	 	  - Optimize writeback cache trashing

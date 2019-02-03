@@ -17,7 +17,7 @@
 kernel_source="$HOME/kernel"
 log="$HOME/kernel/TEMP/logs"
 cd $kernel_source/TEMP/dtbtool
-./dtbtool -s 2048 -o $kernel_source/arch/arm/boot/dt.img -p $kernel_source/scripts/dtc/ $kernel_source/arch/arm/boot/ -> $log/clean.log
+./dtbtool -s 2048 -o $kernel_source/arch/arm/boot/dt.img -p $kernel_source/scripts/dtc/ $kernel_source/arch/arm/boot/ -> $log/dtb.log
 cd $kernel_source
 cp arch/arm/boot/dt.img TEMP/modules/dt.img
 rm arch/arm/boot/dt.img

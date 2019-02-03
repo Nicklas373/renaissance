@@ -32,7 +32,8 @@ NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM US
 - Added Headset High Perfomance Mode (HPF)
 - Added Adreno Idler v1.1
 - Added Faux Sound Control v3.6
-- Added Powersuspend Driver v1.6 
+- Added Powersuspend Driver v1.6
+- Added Dynamic Fsync v2.0
 - Added State Notifier Driver
 - Compiled using GCC Google Toolchains 4.9.4
 - Added Compatibility with AnyKernel v1 Script
@@ -48,7 +49,8 @@ Build status :
 - First Build Done 20190101 [ Uploaded ]
 - Second Build Done 20190102 [ Uploaded ]
 - Other Build Done 20190201 [ Uploaded ] 
-- Third Build Done 20190203 [ Uploaded] [This build already include chill & relaxed]
+- Third Build Done 20190203 [ Uploaded ] [This build already include chill & relaxed]
+- Fourth Build Done 20190204 [ Uploaded ]
 
 Download link :
 
@@ -61,4 +63,3 @@ Thanks to:
 - @vinay94185 [For Overclock]
 
 # Codename: Kaori || Project Yume (2018 - 2019)
-

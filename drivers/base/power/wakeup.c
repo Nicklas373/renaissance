@@ -31,8 +31,6 @@ static bool enable_bluesleep_ws = true;
 module_param(enable_bluesleep_ws, bool, 0644);
 static bool enable_bluedroid_timer_ws = true;
 module_param(enable_bluedroid_timer_ws, bool, 0644);
-static bool enable_bluesleep_ws = true;
-module_param(enable_bluesleep_ws, bool, 0644);
 
 #include "power.h"
 

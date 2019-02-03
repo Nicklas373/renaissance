@@ -1,0 +1,5 @@
+Yume Kernel || Codename: Kaori (2018-2019)
+
+Changelog:
+	  v1.0 (20190203)
+		: - INITIAL BUILD

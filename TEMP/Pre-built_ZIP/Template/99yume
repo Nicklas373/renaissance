@@ -65,8 +65,18 @@ echo "192000" > /sys/module/intelli_plug/parameters/screen_off_max
 echo "Intelli Hotplug is running" | tee -a $LOG_FILE;
 
 # Adjust Franco Simplified Thermal
-echo "55" > /sys/module/msm_thermal/parameters/temp_threshold
-echo "Simplified thermal is running" | tee -a $LOG_FILE;
+# echo "55" > /sys/module/msm_thermal/parameters/temp_threshold
+# echo "Simplified thermal is running" | tee -a $LOG_FILE;
+
+# Adjust Intelli Thermal
+echo "Y" > /sys/module/msm_thermal/parameters/enabled
+echo "1" > /sys/module/msm_thermal/core_control/enabled
+echo "55" > /sys/module/msm_thermal/parameters/limit_temp_degC
+echo "60" > /sys/module/msm_thermal/parameters/core_limit_temp_degC
+echo "500" > /sys/module/msm_thermal/parameters/poll_ms
+echo "2" > /sys/module/msm_thermal/parameters/thermal_limit_low
+echo "11" > /sys/module/msm_thermal/parameters/thermal_limit_high
+echo "Intelli thermal is running" | tee -a $LOG_FILE;
 
 # Adjust GPU Module
 GPU_GOV="msm-adreno-tz"

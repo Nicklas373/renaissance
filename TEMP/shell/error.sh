@@ -16,4 +16,4 @@
 
 kernel_source="$HOME/kernel"
 cd $kernel_source
-atom minori.log
+gedit minori.log

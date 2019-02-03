@@ -44,6 +44,7 @@ modules.builtin
 /System.map
 /Module.markers
 /Module.symvers
+/TEMP/Additional
 arch/arm/mach-msm/smd_rpc_sym.c
 kernel.log
 

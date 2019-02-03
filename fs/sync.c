@@ -19,13 +19,6 @@
 #include <linux/fsync.h>
 #include "internal.h"
 
-bool fsync_enabled = true;
-
-void set_fsync(bool enable)
-	{
-	        fsync_enabled = enable;
-	}
-
 #ifdef CONFIG_POWERSUSPEND
 #include <linux/powersuspend.h>
 #endif
@@ -208,15 +201,14 @@ int vfs_fsync_range(struct file *file, loff_t start, loff_t end, int datasync)
 		return 0;
 
 #ifdef CONFIG_DYNAMIC_FSYNC
-    if (likely(dyn_fsync_active && suspend_active))))
+    if (likely(dyn_fsync_active && suspend_active))
       return 0;
-    else {
+    else 
 #endif
     if (!file->f_op || !file->f_op->fsync)
       return -EINVAL;
     return file->f_op->fsync(file, start, end, datasync);
 #ifdef CONFIG_DYNAMIC_FSYNC
-    }
 #endif
 }
 EXPORT_SYMBOL(vfs_fsync_range);
@@ -260,9 +252,8 @@ SYSCALL_DEFINE1(fsync, unsigned int, fd)
 		return 0;
 
 #ifdef CONFIG_DYNAMIC_FSYNC
-    if (likely(dyn_fsync_active && suspend_active))))
+    if (likely(dyn_fsync_active && suspend_active))
       return 0;
-    else
 #endif
 	return do_fsync(fd, 0);
 }

@@ -19,8 +19,6 @@
 
 static bool enable_si_ws = true;
 module_param(enable_si_ws, bool, 0644);
-static bool enable_msm_hsic_ws = true;
-module_param(enable_msm_hsic_ws, bool, 0644);
 
 #include "power.h"
 
@@ -413,12 +411,6 @@ static void wakeup_source_activate(struct wakeup_source *ws)
 		pr_info("wakeup source sensor_ind activate skipped\n");
 		return;
 	}
-
-	if (!enable_msm_hsic_ws && !strcmp(ws->name, "msm_hsic_host")) {
-                pr_info("wakeup source msm_hsic_host activate skipped\n");
-                return;
-        }
-
 	ws->active = true;
 	ws->active_count++;
 	ws->last_time = ktime_get();

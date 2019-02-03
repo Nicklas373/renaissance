@@ -23,7 +23,7 @@ unzip Test_Kernel.zip
 cd $kernel_source
 mv TEMP/modules/zImage TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-zImage
 mv TEMP/modules/dt.img TEMP/Pre-built_ZIP/ZIP/tmp/kernel/boot.img-dtb
-cp TEMP/Pre-built_ZIP/Template/99minori TEMP/Pre-built_ZIP/ZIP/tmp/kernel/99minori
+cp TEMP/Pre-built_ZIP/Template/99minori TEMP/Pre-built_ZIP/ZIP/tmp/kernel/99yume
 cd TEMP/Pre-built_ZIP/ZIP
 rm Test_Kernel.zip
 zip -r Test_Kernel *

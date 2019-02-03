@@ -21,6 +21,10 @@
 bool fsync_enabled = false;
 module_param(fsync_enabled, bool, 0755);
 
+#ifdef CONFIG_POWERSUSPEND
+#include <linux/powersuspend.h>
+#endif
+
 #define VALID_FLAGS (SYNC_FILE_RANGE_WAIT_BEFORE|SYNC_FILE_RANGE_WRITE| \
 			SYNC_FILE_RANGE_WAIT_AFTER)
 
@@ -217,7 +221,7 @@ SYSCALL_DEFINE1(fsync, unsigned int, fd)
 {
 	if (!fsync_enabled)
 		return 0;
-	
+
 	return do_fsync(fd, 0);
 }
 

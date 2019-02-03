@@ -20,9 +20,14 @@ kernel_source="$HOME/kernel"
 kernel_zip="TEMP/Pre-built_ZIP/ZIP"
 modules="$HOME/kernel/TEMP/modules"
 zImage="$HOME/kernel/TEMP/modules/zImage"
+log="$HOME/kernel/TEMP/logs"
 export ARCH=arm
 export CROSS_COMPILE=$CROSS_COMPILE_GOOGLE/arm-linux-androideabi-
+start=$(date +%s)
 make ARCH=arm yume_flamingo_defconfig
-make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_GOOGLE/arm-linux-androideabi- -j$(nproc --all) -> minori.log
+make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_GOOGLE/arm-linux-androideabi- -j$(nproc --all) -> $log/yume.log
+end=$(date +%s)
+seconds=$(echo "$end - $start" | bc)
+awk -v t=$seconds 'BEGIN{t=int(t*1000); printf "Kernel Compiling Time: %d:%02d:%02d\n", t/3600000, t/60000%60, t/1000%60}' -> $log/time.log
 cd $kernel_source
 cp $kernel_zImage/zImage $modules

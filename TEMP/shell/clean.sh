@@ -16,4 +16,4 @@
 
 kernel_source="$HOME/kernel"
 cd $kernel_source
-make clean && make mrproper
+make clean && make mrproper 

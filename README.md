@@ -34,6 +34,7 @@ NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM US
 - Added Faux Sound Control v3.6
 - Added Powersuspend Driver v1.6
 - Added Dynamic Fsync v2.0
+- Added wakelock bloker driver
 - Added State Notifier Driver
 - Compiled using GCC Google Toolchains 4.9.4
 - Added Compatibility with AnyKernel v1 Script
@@ -51,6 +52,18 @@ Build status :
 - Other Build Done 20190201 [ Uploaded ] 
 - Third Build Done 20190203 [ Uploaded ] [This build already include chill & relaxed]
 - Fourth Build Done 20190204 [ Uploaded ]
+- Fourth Build-INTELLI Done 20190204 [ Uploaded ]
+- Five Build Done 20190205 [ Uploaded ]
+
+Current Active branch :
+
+Testing branch with intelli thermal
+- Kaori-INTELLI :
+https://github.com/Nicklas373/renaissance/tree/kaori-intelli
+
+Stable branch with simplified thermal
+- Kaori :
+https://github.com/Nicklas373/renaissance/tree/kaori
 
 Download link :
 

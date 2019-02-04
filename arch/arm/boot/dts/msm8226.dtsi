@@ -1040,6 +1040,7 @@
 		reg-names = "rcg-base";
 		clock-names = "clk-4", "clk-5";
 		qcom,speed0-bin-v0 =
+			<         0 0>,
 			<  96000000 1>,
 			< 192000000 2>,
 			< 249600000 3>,

@@ -9,3 +9,11 @@ Changelog:
 		  - Increase entropy levels (R/W)
 		  - Misc fixes with zram, gpu
 	 	  - Optimize writeback cache trashing
+	  v1.1.2-INTELLI (20190204)
+		: - Optimize power & wakeup driver algorithm
+		  - Introduce new wakelock blocker driver from oneplus 
+		  - Added intelli thermal v1.0 & revert simplified thermal
+		  - Enabled intelli hotplug by default
+		  - Misc change with init.d
+		  - Kernel compiler switch to shell scripting from C++ Binary file
+

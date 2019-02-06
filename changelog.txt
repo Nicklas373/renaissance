@@ -16,4 +16,10 @@ Changelog:
 		  - Enabled intelli hotplug by default
 		  - Misc change with init.d
 		  - Kernel compiler switch to shell scripting from C++ Binary file
-
+	  v1.1.3-INTELLI  (20190207)
+		: - Added Nightmare CPU Governor
+		  - CPUfreq optimizations
+		  - Misc msm/qcom soc optimizations
+		  - Revert disable msm mpdecision by default
+		  - Added filesystem dynamic read-ahead
+		  - Improve msm thermal temperature

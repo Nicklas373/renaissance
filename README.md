@@ -17,7 +17,7 @@ This kernel feature is :
 NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM USAGE
 - Compatibility with AOSP,CM And LineageOS based ROM [Android 7.0+]
 - Added custom CPU Governor 
-: Alucard,Chill,Relaxed,Conservative & Lionheart
+: Alucard,Chill,Relaxed,Nightmare & Lionheart
 - Added custom I/O Sched Governor 
 : zen,sio,sioplus,tripndroid,fifo,fiops,maple,bfq and vr
 - Added custom TCP Modules
@@ -52,7 +52,8 @@ Build status :
 - Other Build Done 20190201 [ Uploaded ] 
 - Third Build Done 20190203 [ Uploaded ] [This build already include chill & relaxed]
 - Fourth Build Done 20190204 [ Uploaded ]
-- Fourth Build-INTELLI Done 20190204 [ Uploaded ]
+- Five Build Done 20190205 [ Uploaded ]
+- Sixth Build Done 20190207 [ Uploaded ]
 
 Current Active branch :
 

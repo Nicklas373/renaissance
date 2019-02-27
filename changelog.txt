@@ -23,3 +23,8 @@ Changelog:
 		  - Revert disable msm mpdecision by default
 		  - Added filesystem dynamic read-ahead
 		  - Improve msm thermal temperature
+	  v1.1.3.A-INTELLI (20190227)
+		  - Improve adreno idler a bit :v
+		  - Drop vfs cache pressure
+                  - Initial support of quickwakeup driver
+                  - Other misc fixes and improvement

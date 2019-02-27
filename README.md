@@ -36,6 +36,7 @@ NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM US
 - Added Dynamic Fsync v2.0
 - Added State Notifier Driver
 - Added wakelock bloker driver
+- Added Quick Wake Up Driver
 - Compiled using GCC Google Toolchains 4.9.4
 - Added Compatibility with AnyKernel v1 Script
 - Added EXFAT File System Support (Ported from https://github.com/dorimanx/exfat-nofuse)
@@ -54,6 +55,7 @@ Build status :
 - Fourth Build Done 20190204 [ Uploaded ]
 - Five Build Done 20190205 [ Uploaded ]
 - Sixth Build Done 20190207 [ Uploaded ]
+- Seventh Build Done 20190227 [ Uploaded ]
 
 Current Active branch :
 

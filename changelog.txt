@@ -24,7 +24,18 @@ Changelog:
 		  - Added filesystem dynamic read-ahead
 		  - Improve msm thermal temperature
 	  v1.1.3.A-INTELLI (20190227)
-		  - Improve adreno idler a bit :v
+		: - Improve adreno idler a bit :v
 		  - Drop vfs cache pressure
                   - Initial support of quickwakeup driver
                   - Other misc fixes and improvement
+	  v1.2-INTELLI (20190308)
+		: - Revert powersuspend driver to v1.5
+		  - LMK Optimizations from eagle-yukon optimizations (@kj77)
+		  - Updated ZRAM,ZSMALLOC & ZBUD from eagle-yukon (@kj77)
+		  - Include LZ4 Compression algorithm 
+		  - Remove 96Mhz underclock frequency
+		  - Change to GCC5 (Hyper Toolchains)
+		  - Cortex-A7 Optimizations (@pinkflozd)
+		  - Introduce Dynamic management of timer slack for hrtimer & cgroup
+		  - CPU Misc optimizations
+		  - Switch to O3 Optimizations (Optimize Alot)

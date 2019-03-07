@@ -42,6 +42,7 @@ NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM US
 - Added EXFAT File System Support (Ported from https://github.com/dorimanx/exfat-nofuse)
 - Added F2FS File System Support (Ported from https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-stable.git/)
 - Added Dynamic Management Page of Dirty Writeback
+- Added Dynamic management of timer slack
 - And other more, see github commit for other optimizations
 
 #Private PROJECT
@@ -56,6 +57,7 @@ Build status :
 - Five Build Done 20190205 [ Uploaded ]
 - Sixth Build Done 20190207 [ Uploaded ]
 - Seventh Build Done 20190227 [ Uploaded ]
+- Eighth Build Done 20190308 [ Uploaded ]
 
 Current Active branch :
 

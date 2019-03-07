@@ -16,6 +16,7 @@
 
 #Kernel Logic Memory
 CROSS_COMPILE_GOOGLE="$HOME/arm-linux-androideabi-4.9/bin"
+CROSS_COMPILE_GCC_5="$HOME/arm-linux-androideabi-5.x/bin"
 kernel_zImage="$HOME/kernel/arch/arm/boot"
 kernel_source="$HOME/kernel"
 kernel_zip="TEMP/Pre-built_ZIP/ZIP"
@@ -36,10 +37,10 @@ awk -v t=$seconds 'BEGIN{t=int(t*1000); printf "Kernel Compiling Time: %d:%02d:%
 #Compiling kernel
 compile(){
 export ARCH=arm
-export CROSS_COMPILE=$CROSS_COMPILE_GOOGLE/arm-linux-androideabi-
+export CROSS_COMPILE=$CROSS_COMPILE_GCC_5/arm-linux-androideabi-
 start=$(date +%s)
 make ARCH=arm yume_flamingo_defconfig
-make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_GOOGLE/arm-linux-androideabi- -j$(nproc --all) -> $log/yume.log
+make ARCH=arm CROSS_COMPILE=$CROSS_COMPILE_GCC_5/arm-linux-androideabi- -j$(nproc --all) -> $log/yume.log
 cd $kernel_source
 cp $kernel_zImage/zImage $modules
 }
@@ -123,12 +124,12 @@ echo "
 #                                                    #
 #                Nicklas Van Dam @XDA                #
 #                                                    #
-#	   	Codename: Kaori (2019)	             #
+#	   	Codename: Kotoha (2019)	             #
 #						     #
 ######################################################"
 echo ""
 echo "Welcome To Yume Kernel Builder"
-echo "##Running GCC Toolchains 4.9.X (Google Toolchains)"
+echo "##Running GCC Toolchains 5.4.X (Hyper Toolchains)"
 compile
 checking
 }

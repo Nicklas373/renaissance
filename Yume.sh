@@ -63,7 +63,7 @@ cd $HOME/kernel/TEMP/Pre-built_ZIP/ZIP
 mv Test_Kernel.zip $HOME/kernel/TEMP/Pre-built_ZIP/Sign/Test_Kernel.zip
 cd $HOME/kernel/TEMP/Pre-built_ZIP/Sign
 java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 Test_Kernel.zip Test_Kernel-Flamingo-signed.zip
-mv  Test_Kernel-Flamingo-signed.zip $HOME/kernel/Build/Yume_Kernel-Flamingo-signed-$(date +"%Y-%m-%d")-INTELLI.zip
+mv  Test_Kernel-Flamingo-signed.zip $HOME/kernel/Build/Yume_Kernel-Flamingo-signed-$(date +"%Y-%m-%d").zip
 rm Test_Kernel.zip
 }
 

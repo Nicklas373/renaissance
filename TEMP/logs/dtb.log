@@ -1,8 +1,6 @@
 DTB combiner:
-  Input directory: '/home/kaori/kernel/arch/arm/boot/'
-  Output file: '/home/kaori/kernel/arch/arm/boot/dt.img'
-Searching subdir: /home/kaori/kernel/arch/arm/boot/compressed/ ... 
-Searching subdir: /home/kaori/kernel/arch/arm/boot/bootp/ ... 
+  Input directory: '/home/hana/kernel/arch/arm/boot/'
+  Output file: '/home/hana/kernel/arch/arm/boot/dt.img'
 Found file: msm8226-flamingo_ss.dtb ... 
 Version:2
 chipset: 145, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
@@ -14,14 +12,8 @@ additional chipset: 220, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 
 additional chipset: 221, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
 additional chipset: 222, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
 additional chipset: 223, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
-Found file: msm8926-8926ss_ap.dtb ... 
-Version:2
-chipset: 200, rev: 0, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
-additional chipset: 224, rev: 0, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
-additional chipset: 200, rev: 65537, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
-additional chipset: 224, rev: 65537, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
-Searching subdir: /home/kaori/kernel/arch/arm/boot/dts/ ... 
-Searching subdir: /home/kaori/kernel/arch/arm/boot/dts/testcases/ ... 
+Searching subdir: /home/hana/kernel/arch/arm/boot/bootp/ ... 
+Searching subdir: /home/hana/kernel/arch/arm/boot/compressed/ ... 
 Found file: msm8226-flamingo_ds.dtb ... 
 Version:2
 chipset: 145, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
@@ -34,6 +26,14 @@ additional chipset: 221, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 
 additional chipset: 222, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
 additional chipset: 223, rev: 131072, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
 ... duplicate info, skipped
+Found file: msm8926-8926ss_ap.dtb ... 
+Version:2
+chipset: 200, rev: 0, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
+additional chipset: 224, rev: 0, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
+additional chipset: 200, rev: 65537, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
+additional chipset: 224, rev: 65537, platform: 8, subtype: 0, pmic0: 0, pmic1: 0, pmic2: 0, pmic3: 0
+Searching subdir: /home/hana/kernel/arch/arm/boot/dts/ ... 
+Searching subdir: /home/hana/kernel/arch/arm/boot/dts/testcases/ ... 
 => Found 13 unique DTB(s)
 
 Generating master DTB... completed

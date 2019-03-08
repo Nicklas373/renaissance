@@ -2,7 +2,7 @@
 #
 # Init.d Script For Yume Kernel.
 # Nicklas Van Dam @ XDA
-# Codename: Kaori | Project Yume (2019)
+# Codename: Kotoha | Project Yume (2019)
 #
 
 #Sleep Is Required.....
@@ -10,7 +10,7 @@
 sleep 30
 
 #Initiate a Log File
-LOG_FILE=/mnt/sdcard/kaori.log
+LOG_FILE=/mnt/sdcard/kotoha.log
 
 # Adjust CPU Modules for Governor,Frequency and other features
 # Available CPU Frequency to use 
@@ -75,7 +75,7 @@ echo "55" > /sys/module/msm_thermal/parameters/limit_temp_degC
 echo "60" > /sys/module/msm_thermal/parameters/core_limit_temp_degC
 echo "500" > /sys/module/msm_thermal/parameters/poll_ms
 echo "2" > /sys/module/msm_thermal/parameters/thermal_limit_low
-echo "11" > /sys/module/msm_thermal/parameters/thermal_limit_high
+echo "12" > /sys/module/msm_thermal/parameters/thermal_limit_high
 echo "Intelli thermal is running" | tee -a $LOG_FILE;
 
 # Adjust GPU Module
@@ -109,7 +109,7 @@ echo "N" > /sys/module/sync/paramaters/fsync_enabled
 echo "1" > /sys/kernel/dyn_fsync/Dyn_fsync_active
 echo "0" > /sys/kernel/sched/gentle_fair_sleepers
 echo "1" > /sys/kernel/sched/arch_power
-echo "0" > /sys/kernel/power_suspend/power_suspend_state 1
+echo "1" > /sys/kernel/power_suspend/power_suspend_state
 echo "Misc already configured" | tee -a $LOG_FILE;
 
 # Adjust Wakelock Configurations

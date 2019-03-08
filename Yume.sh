@@ -15,7 +15,7 @@
 #
 
 #Kernel Logic Memory
-CROSS_COMPILE_GOOGLE="$HOME/arm-linux-androideabi-4.9/bin"
+# CROSS_COMPILE_GOOGLE="$HOME/arm-linux-androideabi-4.9/bin"
 CROSS_COMPILE_GCC_5="$HOME/arm-linux-androideabi-5.x/bin"
 kernel_zImage="$HOME/kernel/arch/arm/boot"
 kernel_source="$HOME/kernel"
@@ -80,15 +80,15 @@ rm arch/arm/boot/dt.img
 #Notification Completed
 kernel_completed(){
 message=${1:-"虹色letters"}
-notify-send -t 3000 -i $HOME/kernel/TEMP/Additional/cover-1.jpg "THE IDOLM@STER LIVE THE@TER SOLO COLLECTION 06 Angel Stars" "$message"
-ffplay $HOME/kernel/TEMP/Additional/letters.flac
+notify-send -t 3000 -i $HOME/Media/cover-1.jpg "THE IDOLM@STER LIVE THE@TER SOLO COLLECTION 06 Angel Stars" "$message"
+ffplay $HOME/Media/letters.flac
 }
 
 #Notification Failed
 kernel_failed(){
 message=${1:-"Riko's Piano Sonata"}
-notify-send -t 3000 -i $HOME/kernel/TEMP/Additional/cover-2.jpg "想いよひとつになれ (ピアノバージョン)" "$message"
-ffplay $HOME/kernel/TEMP/Additional/hitotsu.flac
+notify-send -t 3000 -i $HOME/Media/cover-2.jpg "想いよひとつになれ (ピアノバージョン)" "$message"
+ffplay $HOME/Media/hitotsu.flac
 }
 
 #Kernel Checking

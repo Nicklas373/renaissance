@@ -48,10 +48,10 @@ echo "Y" > /sys/module/cpu_boost/parameters/wakeup_boost
 echo "1" > /sys/module/cpu_boost/parameters/input_boost_enabled
 echo "20" > /sys/module/cpu_boost/parameters/boost_ms
 echo "40" > /sys/module/cpu_boost/parameters/input_boost_ms
-echo "0:787200" /sys/module/cpu_boost/parameters/input_boost_freq
-echo "1:787200" /sys/module/cpu_boost/parameters/input_boost_freq
-echo "2:787200" /sys/module/cpu_boost/parameters/input_boost_freq
-echo "3:787200" /sys/module/cpu_boost/parameters/input_boost_freq
+echo "0:787200" > /sys/module/cpu_boost/parameters/input_boost_freq
+echo "1:787200" > /sys/module/cpu_boost/parameters/input_boost_freq
+echo "2:787200" > /sys/module/cpu_boost/parameters/input_boost_freq
+echo "3:787200" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo "998400" > /sys/module/cpu_boost/parameters/sync_threshold
 echo "CPU Boost Module is running" | tee -a $LOG_FILE;
 
@@ -61,7 +61,7 @@ echo "1" > /sys/module/intelli_plug/parameters/touch_boost_active
 echo "1" > /sys/module/intelli_plug/parameters/nr_run_profile_sel
 echo "350" > /sys/module/intelli_plug/parameters/cpu_nr_run_threshold
 echo "8" > /sys/module/intelli_plug/parameters/cpu_nr_run_hysteresis
-echo "192000" > /sys/module/intelli_plug/parameters/screen_off_max
+echo "384000" > /sys/module/intelli_plug/parameters/screen_off_max
 echo "Intelli Hotplug is running" | tee -a $LOG_FILE;
 
 # Adjust Franco Simplified Thermal
@@ -75,7 +75,7 @@ echo "55" > /sys/module/msm_thermal/parameters/limit_temp_degC
 echo "60" > /sys/module/msm_thermal/parameters/core_limit_temp_degC
 echo "500" > /sys/module/msm_thermal/parameters/poll_ms
 echo "2" > /sys/module/msm_thermal/parameters/thermal_limit_low
-echo "12" > /sys/module/msm_thermal/parameters/thermal_limit_high
+echo "14" > /sys/module/msm_thermal/parameters/thermal_limit_high
 echo "Intelli thermal is running" | tee -a $LOG_FILE;
 
 # Adjust GPU Module

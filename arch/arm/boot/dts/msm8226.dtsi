@@ -1221,12 +1221,12 @@
 	qcom,msm-thermal {
 		compatible = "qcom,msm-thermal";
 		qcom,sensor-id = <0>;
-		qcom,poll-ms = <250>;
+		qcom,poll-ms = <500>;
 		qcom,limit-temp = <60>;
-		qcom,temp-hysteresis = <10>;
+		qcom,temp-hysteresis = <14>;
 		qcom,freq-step = <2>;
 		qcom,freq-control-mask = <0xf>;
-		qcom,core-limit-temp = <80>;
+		qcom,core-limit-temp = <55>;
 		qcom,core-temp-hysteresis = <10>;
 		qcom,core-control-mask = <0xe>;
 		qcom,hotplug-temp = <110>;

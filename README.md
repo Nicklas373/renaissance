@@ -56,8 +56,7 @@ Build status :
 - Fourth Build Done 20190204 [ Uploaded ]
 - Five Build Done 20190205 [ Uploaded ]
 - Sixth Build Done 20190207 [ Uploaded ]
-- Seventh Build Done 20190227 [ Uploaded ]
-- Eighth Build Done 20190310 [ Uploaded ]
+- Seventh Build Done 20190310 [ Uploaded ]
 
 Current Active branch :
 

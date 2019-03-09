@@ -80,4 +80,4 @@ Thanks to:
 - @infus38 [For some kernel patch]
 - @vinay94185 [For Overclock]
 
-# Codename: Kaori || Project Yume (2018 - 2019)
+# Codename: Kotoha || Project Yume (2018 - 2019)

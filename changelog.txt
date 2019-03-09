@@ -1,4 +1,4 @@
-Yume Kernel || Codename: Kaori (2018-2019)
+Yume Kernel || Codename: Kotoha (2018-2019)
 
 Changelog:
 	  v1.0 (20190203)

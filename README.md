@@ -11,7 +11,7 @@ Recommended Kernel Configuration App:
 This kernel feature is :
 - Linux Kernel v3.4.113 (Upstream based on git.kernel.org)
 - Added CPU overclock up to 1,6Ghz
-- Added CPU underclock to 96Mhz (300Mhz as minimum idle freq)
+- Added CPU underclock to 192Mhz (384Mhz as minimum idle freq)
 - Added GPU overclock and underclock to 100Mhz as lower and 550Mhz as higher frequency
 - Added CPU GOV Backported from linux 3.10 (Only for chill and relaxed)
 NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM USAGE
@@ -32,15 +32,17 @@ NOTE: BUILD THAT INCLUDED THIS FEATURE ISN'T RECOMMENDED TO USE FOR LONG TERM US
 - Added Headset High Perfomance Mode (HPF)
 - Added Adreno Idler v1.1
 - Added Faux Sound Control v3.6
-- Added Powersuspend Driver v1.6
+- Added Powersuspend Driver v1.5
 - Added Dynamic Fsync v2.0
-- Added wakelock bloker driver
 - Added State Notifier Driver
-- Compiled using GCC Google Toolchains 4.9.4
+- Added wakelock bloker driver
+- Added Quick Wake Up Driver
+- Compiled using GCC Hyper Toolchains 5.4.1
 - Added Compatibility with AnyKernel v1 Script
 - Added EXFAT File System Support (Ported from https://github.com/dorimanx/exfat-nofuse)
 - Added F2FS File System Support (Ported from https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-stable.git/)
 - Added Dynamic Management Page of Dirty Writeback
+- Added Dynamic Management of Timer Slack
 - And other more, see github commit for other optimizations
 
 #Private PROJECT
@@ -54,12 +56,14 @@ Build status :
 - Fourth Build Done 20190204 [ Uploaded ]
 - Five Build Done 20190205 [ Uploaded ]
 - Sixth Build Done 20190207 [ Uploaded ]
+- Seventh Build Done 20190227 [ Uploaded ]
+- Eighth Build Done 20190310 [ Uploaded ]
 
 Current Active branch :
 
 Testing branch with intelli thermal
-- Kaori-INTELLI :
-https://github.com/Nicklas373/renaissance/tree/kaori-intelli
+- kotoha-intelli :
+https://github.com/Nicklas373/renaissance/tree/kotoha-intelli
 
 Stable branch with simplified thermal
 - Kaori :
@@ -75,4 +79,4 @@ Thanks to:
 - @infus38 [For some kernel patch]
 - @vinay94185 [For Overclock]
 
-# Codename: Kaori || Project Yume (2018 - 2019)
+# Codename: Kotoha || Project Yume (2018 - 2019)

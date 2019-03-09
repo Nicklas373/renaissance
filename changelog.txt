@@ -1,4 +1,4 @@
-Yume Kernel || Codename: Kaori (2018-2019)
+Yume Kernel || Codename: Kotoha (2018-2019)
 
 Changelog:
 	  v1.0 (20190203)
@@ -21,3 +21,27 @@ Changelog:
 		  - Misc msm/qcom soc optimizations
 		  - Revert disable msm mpdecision by default
 		  - Added filesystem dynamic read-ahead
+	  v1.1.3.A (20190227)
+		: - Improve adreno idler a bit :v
+		  - Drop vfs cache pressure
+                  - Initial support of quickwakeup driver
+                  - Other misc fixes and improvement
+	  v1.2 (20190308)
+		: - Revert powersuspend driver to v1.5
+		  - LMK Optimizations from eagle-yukon optimizations (@kj77)
+		  - Updated ZRAM,ZSMALLOC & ZBUD from eagle-yukon (@kj77)
+		  - Include LZ4 Compression algorithm 
+		  - Remove 96Mhz underclock frequency
+		  - Change to GCC5 (Hyper Toolchains)
+		  - Cortex-A7 Optimizations (@pinkflozd)
+		  - Introduce Dynamic management of timer slack for hrtimer & cgroup
+		  - CPU Misc optimizations
+		  - Switch to O3 Optimizations (Optimize Alot)
+	  v1.2.1 (20190310)
+	        : - Fixed not booting issue
+		  - Fixed problem with deepsleep / random reboot cause from sleep
+	          - Revert O3 Optimizations
+	          - Revert updated powersuspend drivers from 1.6, revert to 1.5
+		  - Re-configure Min Max CPU Limits, Min = 384Mhz, Max = 1194Mhz
+		  - Re-configure Stock Thermal
+		  - Removed other mpdecision binary that still enabled

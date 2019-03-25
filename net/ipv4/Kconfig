@@ -594,10 +594,13 @@ config TCP_CONG_ILLINOIS
 
 choice
 	prompt "Default TCP congestion control"
-	default DEFAULT_CUBIC
+	default DEFAULT_WESTWOOD
 	help
 	  Select the TCP congestion control that will be used by default
 	  for all connections.
+
+	config DEFAULT_ASCAREX
+		bool "Ascarex" if TCP_CONG_ASCAREX=y
 
 	config DEFAULT_BIC
 		bool "Bic" if TCP_CONG_BIC=y
@@ -623,6 +626,9 @@ choice
 	config DEFAULT_RENO
 		bool "Reno"
 
+	config DEFAULT_WESTWOOD
+		bool "Westwood"
+
 endchoice
 
 endif
@@ -634,6 +640,7 @@ config TCP_CONG_CUBIC
 
 config DEFAULT_TCP_CONG
 	string
+	default "ascarex" if DEFAULT_ASCAREX
 	default "bic" if DEFAULT_BIC
 	default "cubic" if DEFAULT_CUBIC
 	default "htcp" if DEFAULT_HTCP
@@ -642,7 +649,7 @@ config DEFAULT_TCP_CONG
 	default "westwood" if DEFAULT_WESTWOOD
 	default "veno" if DEFAULT_VENO
 	default "reno" if DEFAULT_RENO
-	default "cubic"
+	default "westwood"
 
 config TCP_MD5SIG
 	bool "TCP: MD5 Signature Option support (RFC2385) (EXPERIMENTAL)"

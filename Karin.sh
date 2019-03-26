@@ -105,13 +105,13 @@ then
 else
 	echo "Kernel not found"
 	echo "Cancel kernel to build"
-	gedit $log/karin.log
 	cd $kernel_source
 	kernel_failed
 	end=$(date +%s)
 	seconds=$(echo "$end - $start" | bc)
 	awk -v t=$seconds 'BEGIN{t=int(t*1000); printf "##################################\n# Kernel Compiling Time: %d:%02d:%02d#\n##################################\n", t/3600000, t/60000%60, t/1000%60}'
 	awk -v t=$seconds 'BEGIN{t=int(t*1000); printf "Kernel Compiling Time: %d:%02d:%02d\n", t/3600000, t/60000%60, t/1000%60}' -> $log/time.log
+	gedit $log/karin.log
 fi
 }
 

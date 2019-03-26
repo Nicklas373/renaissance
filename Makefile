@@ -374,13 +374,12 @@ KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
-		   -Wno-format-security -Wno-logical-not-parentheses \
+		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks \
 		   -mfpu=neon -funsafe-math-optimizations \
 		   -ffast-math -fsingle-precision-constant \
                    -fgcse-lm -fgcse-sm -fsched-spec-load -fforce-addr \
 		   -munaligned-access
-
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__

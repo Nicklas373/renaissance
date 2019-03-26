@@ -1,0 +1,12 @@
+  CLEAN   .
+  CLEAN   arch/arm/kernel
+  CLEAN   drivers/tty/vt
+  CLEAN   kernel
+  CLEAN   lib
+  CLEAN   net/wireless
+  CLEAN   security/selinux
+  CLEAN   usr
+  CLEAN   arch/arm/boot/compressed
+  CLEAN   arch/arm/boot
+  CLEAN   .tmp_versions
+  CLEAN   vmlinux System.map .tmp_kallsyms2.S .tmp_kallsyms1.o .tmp_kallsyms2.o .tmp_kallsyms1.S .tmp_vmlinux1 .tmp_vmlinux2 .tmp_System.map

@@ -1,0 +1,9 @@
+  CLEAN   scripts/basic
+  CLEAN   scripts/dtc
+  CLEAN   scripts/kconfig
+  CLEAN   scripts/mod
+  CLEAN   scripts/selinux/genheaders
+  CLEAN   scripts/selinux/mdp
+  CLEAN   scripts
+  CLEAN   include/config include/generated arch/arm/include/generated
+  CLEAN   .config .version include/linux/version.h Module.symvers

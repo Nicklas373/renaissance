@@ -497,18 +497,6 @@ static ssize_t show_scaling_cur_freq(
 	return ret;
 }
 
-static ssize_t show_scaling_cur_freq(
-	struct cpufreq_policy *policy, char *buf)
-{
-	ssize_t ret;
-
-	if (cpufreq_driver && cpufreq_driver->setpolicy && cpufreq_driver->get)
-		ret = sprintf(buf, "%u\n", cpufreq_driver->get(policy->cpu));
-	else
-		ret = sprintf(buf, "%u\n", policy->cur);
-	return ret;
-}
-
 static int __cpufreq_set_policy(struct cpufreq_policy *data,
 				struct cpufreq_policy *policy);
 
@@ -1516,27 +1504,6 @@ static void cpufreq_out_of_sync(unsigned int cpu, unsigned int old_freq,
 	cpufreq_notify_transition(&freqs, CPUFREQ_PRECHANGE);
 	cpufreq_notify_transition(&freqs, CPUFREQ_POSTCHANGE);
 }
-
-/**
- * cpufreq_quick_get_util - get the CPU utilization from policy->util
- * @cpu: CPU number
- *
- * This is the last known util, without actually getting it from the driver.
- * Return value will be same as what is shown in util in sysfs.
- */
-unsigned int cpufreq_quick_get_util(unsigned int cpu)
-{
-	struct cpufreq_policy *policy = cpufreq_cpu_get(cpu);
-	unsigned int ret_util = 0;
-
-	if (policy) {
-		ret_util = policy->util;
-		cpufreq_cpu_put(policy);
-	}
-
-	return ret_util;
-}
-EXPORT_SYMBOL(cpufreq_quick_get_util);
 
 /**
  * cpufreq_quick_get_util - get the CPU utilization from policy->util

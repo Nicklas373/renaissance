@@ -1,0 +1,105 @@
+#!system/bin/sh
+#
+# Init.d Script For Yume Kernel.
+# Nicklas Van Dam @ XDA
+# Codename: Karin  
+# Project Yume (2018-2019) 
+# 花林 Kernel Project (2019)
+#
+
+#Sleep Is Required.....
+#Hey I need to sleep let me sleep
+sleep 30
+
+#Initiate a Log File
+rm /mnt/sdcard/karin.log
+LOG_FILE=/mnt/sdcard/karin.log
+
+# Adjust CPU Modules for Governor,Frequency and other features
+# Available CPU Frequency to use 
+# 192000 259000 300000 384000 499000 600000 787200 998400 1094400 1190400 1305600 1344000 1401600 1497600 1593600
+CPU_MIN="384000"
+CPU_MAX="1190400"
+CPU_GOV="chill"
+
+echo $CPU_MIN > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo $CPU_MIN > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+echo $CPU_MIN > /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+echo $CPU_MIN > /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
+echo $CPU_MAX > /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
+echo $CPU_GOV > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+echo "1" > /sys/devices/system/cpu/sched_mc_power_savings
+echo "$CPU_GOV Governor is running" | tee -a $LOG_FILE;
+echo "$CPU_MIN Hz Current Min CPU Speed" | tee -a $LOG_FILE;
+echo "$CPU_MAX Hz Current Max CPU Speed" | tee -a $LOG_FILE;
+
+# Adjust CPU Boost Module
+echo "1" > /sys/devices/module/cpu_boost/paramaters/cpu_boost
+echo "40" > /sys/devices/module/cpu_boost/paramaters/input_boost_ms
+echo "998400" > /sys/devices/module/cpu_boost/paramaters/input_boost_freq
+echo "787200" > /sys/devices/module/cpu_boost/paramaters/sync_threshold
+echo "CPU Boost is running" | tee -a $LOG_FILE;
+
+# Adjust Power Efficient Workqueue
+chmod 0644 /sys/module/workqueue/parameters/power_efficient
+echo "Y" > /sys/module/workqueue/parameters/power_efficient
+echo "Power Efficient Workqueue is running" | tee -a $LOG_FILE;
+
+# Adjust Intelli Thermal
+echo "Y" > /sys/module/msm_thermal/parameters/enabled
+echo "1" > /sys/module/msm_thermal/core_control/enabled
+echo "55" > /sys/module/msm_thermal/parameters/limit_temp_degC
+echo "60" > /sys/module/msm_thermal/parameters/core_limit_temp_degC
+echo "500" > /sys/module/msm_thermal/parameters/poll_ms
+echo "2" > /sys/module/msm_thermal/parameters/thermal_limit_low
+echo "14" > /sys/module/msm_thermal/parameters/thermal_limit_high
+echo "Intelli thermal is running" | tee -a $LOG_FILE;
+
+# Adjust Intelli Hotplug
+echo "1" > /sys/module/intelli_plug/parameters/intelli_plug_active
+echo "350" > /sys/module/intelli_plug/parameters/cpu_nr_run_threshold
+echo "8" > /sys/module/intelli_plug/parameters/nr_run_hysteresis
+echo "1" > /sys/module/intelli_plug/parameters/nr_run_profile_sel
+echo "1" > /sys/module/intelli_plug/parameters/touch_boost_active
+echo "Intelli hotplug is running" | tee -a $LOG_FILE;
+
+# Adjust GPU Module
+GPU_GOV="msm-adreno-tz"
+echo "450000000" > /sys/class/kgsl/kgsl-3d0/devfreq/max_gpuclk
+echo "200000000" > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+echo $GPU_GOV > /sys/class/kgsl/kgsk-3d0/devfreq/governor
+echo "$GPU_GOV Governor is running" | tee -a $LOG_FILE;
+	
+# Adjust Adreno Idler Module
+echo "Y" > /sys/module/adreno_idler/parameters/adreno_idler_active
+echo "4000" > /sys/module/adreno_idler/parameters/adreno_idler_idleworkload
+echo "20" > /sys/module/adreno_idler/parameters/adreno_idler_idlewait
+echo "20" > /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
+echo "Adreno Idler is running" | tee -a $LOG_FILE;
+
+# Adjust Headset High Performance Mode (HPF)
+echo "1" > /sys/devices/virtual/misc/soundcontrol/highperf_enabled
+echo "1" > /sys/kernel/sound_control_3/gpl_sound_control_locked
+echo "1" > /sys/kernel/sound_control_3/gpl_sound_control_rec_locked
+echo "Headset High Performance Mode Enabled" | tee -a $LOG_FILE;
+
+# Adjust I/O Scheduler Module
+IO_GOV="bfq"
+echo $IO_GOV > /sys/block/mmcblk0/queue/scheduler
+echo $IO_GOV > /sys/block/mmcblk1/queue/scheduler
+echo "$IO_GOV Sheduler is running" | tee -a $LOG_FILE;
+
+# Adjust Misc Configurations
+echo "1" > /sys/kernel/logger_mode/logger_mode
+echo "0" > /sys/module/mmc_core/parameters/use_spi_crc
+echo "N" > /sys/module/sync/paramaters/fsync_enabled
+echo "0" > /sys/kernel/sched/gentle_fair_sleepers
+echo "0" > /sys/kernel/sched/arch_power
+echo "1" > /sys/kernel/power_suspend/power_suspend_state
+echo "Misc already configured" | tee -a $LOG_FILE;

@@ -36,7 +36,7 @@ This kernel feature is :
 - Compiled using Google Toolchains 4.9.4
 - Added Compatibility with AnyKernel v1 Script
 - Added EXFAT File System Support (Ported from https://github.com/dorimanx/exfat-nofuse)
-- Added F2FS File System Support (Ported from https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-stable.git/)
+- Added F2FS File System Support (Ported from https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-stable)
 - And other more, see github commit for other optimizations
 
 #Private PROJECT
@@ -64,7 +64,7 @@ Old Testing branch with intelli thermal [DEPRECATED]
 - kotoha-intelli :
 https://github.com/Nicklas373/renaissance/tree/kotoha-intelli
 
-Old Stable branch with simplified thermal [DEPRECTED]
+Old Stable branch with simplified thermal [DEPRECATED]
 - Kaori :
 https://github.com/Nicklas373/renaissance/tree/kaori
 
@@ -73,15 +73,13 @@ Stable branch with intelli thermal
 https://github.com/Nicklas373/renaissance/tree/karin
 
 Download link :
-
 - Google Drive :
-[Yume Build] https://drive.google.com/open?id=1kdSeZS2e5vzp7YTazy9EPV_RA26Ni-8h
-
-[Karin Build] https://drive.google.com/drive/folders/15ShXF71SXOL1t0as3A7Ka1hzW-u8LGb_
+* [Yume Build](https://drive.google.com/open?id=1kdSeZS2e5vzp7YTazy9EPV_RA26Ni-8h)
+* [Karin Build](https://drive.google.com/drive/folders/15ShXF71SXOL1t0as3A7Ka1hzW-u8LGb_)
 
 Thanks to:
 - @rmnhg [For kernel source]
 - @infus38 [For some kernel patch]
 - @vinay94185 [For Overclock]
 
-# Codename: Kotoha || Project Yume (2018 - 2019)
+# Codename: Karin || Project Yume (2018 - 2019)
